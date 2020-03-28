@@ -118,7 +118,7 @@ class Mana_Potion(Potion):
     def execute(self, target):
         if self.quantity > 0:
             target.set_mana(self.mana_cost)
-            print("{} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name))
+            print("{} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name()))
             self.set_quantity(-1)
 
 

@@ -100,10 +100,6 @@ class battleHandler(object):
                 self.set_active_player(player)
                 break
 
-        if self.set_active_player == None:
-            print("No player was selected?")
-            exit()
-
 
     # Play game using randomized turn-based mechanics based on all players' speeds
     def fight(self):
