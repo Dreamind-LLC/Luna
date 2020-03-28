@@ -55,9 +55,6 @@ class Action(object):
             # Select skill
             target = target_list[choice-1]
         
-            # Display skill selected
-            print("{} was selected!".format(target.get_name()))
-        
             return target
 
 class Attack(Action):
@@ -81,7 +78,7 @@ class Bash(Attack):
         if total_damage > 0:
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
-            print("{} missed!!".format(self.get_name()))
+            print("{} missed {}!!".format(self.get_name(), target.get_name()))
             
         # Assign damage to opposing player
         target.set_health(-total_damage)
@@ -117,7 +114,7 @@ class FireBlast(Spell):
             # Update to print multiple targets
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
-            print("{} missed!!".format(self.get_name()))
+            print("{} missed {}!!".format(self.get_name(), target.get_name()))
             
         # Update player stats
         self.user.set_mana(-mana_cost)
@@ -147,7 +144,7 @@ class IceBlast(Spell):
             # Update to print multiple targets
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
-            print("{} missed!!".format(self.get_name()))
+            print("{} missed {}!!".format(self.get_name(), target.get_name()))
             
         # Update player stats
         self.user.set_mana(-mana_cost)
@@ -177,7 +174,7 @@ class LightingBolt(Spell):
             # Update to print multiple targets
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
-            print("{} missed!!".format(self.get_name()))
+            print("{} missed {}!!".format(self.get_name(), target.get_name()))
             
         # Update player stats
         self.user.set_mana(-mana_cost)
@@ -206,7 +203,7 @@ class Venom(Spell):
             # Update to print multiple targets
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
-            print("{} missed!!".format(self.get_name()))
+            print("{} missed {}!!".format(self.get_name(), target.get_name()))
             
         # Update player stats
         self.user.set_mana(-mana_cost)
