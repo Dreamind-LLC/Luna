@@ -76,15 +76,15 @@ class Bash(Attack):
         
         # Actual damage inflicted based on how accurate player is
         total_damage = np.round_(self.attack_damage * self.user.attack_rating(), decimals=2)
-            
-        # Assign damage to opposing player
-        target.set_health(-total_damage)
         
         # Display damage to console
         if total_damage > 0:
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
             print("{} missed!!".format(self.get_name()))
+            
+        # Assign damage to opposing player
+        target.set_health(-total_damage)
     
 class Spell(Action):
     def __init__(self, user, action_name, magic_type, mana_cost):
@@ -110,11 +110,7 @@ class FireBlast(Spell):
             
         # Determine spell damage
         # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
-        total_damage = np.random.normal(mana_cost, 0.1*mana_cost)
-            
-        # Update player stats
-        self.user.set_mana(-mana_cost)
-        target.set_health(-total_damage)  
+        total_damage = np.random.normal(mana_cost, 0.1*mana_cost)  
         
         # Display damage results to console
         if total_damage > 0:
@@ -122,6 +118,10 @@ class FireBlast(Spell):
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
             print("{} missed!!".format(self.get_name()))
+            
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_health(-total_damage)
 
 class IceBlast(Spell):
     def __init__(self, user):
@@ -140,11 +140,7 @@ class IceBlast(Spell):
             
         # Determine spell damage
         # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
-        total_damage = np.random.normal(mana_cost, 0.1*mana_cost)
-            
-        # Update player stats
-        self.user.set_mana(-mana_cost)
-        target.set_health(-total_damage) 
+        total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
         if total_damage > 0:
@@ -152,6 +148,10 @@ class IceBlast(Spell):
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
             print("{} missed!!".format(self.get_name()))
+            
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_health(-total_damage)
         
 class LightingBolt(Spell):
     def __init__(self, user):
@@ -170,11 +170,7 @@ class LightingBolt(Spell):
             
         # Determine spell damage
         # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
-        total_damage = np.random.normal(mana_cost, 0.1*mana_cost)
-            
-        # Update player stats
-        self.user.set_mana(-mana_cost)
-        target.set_health(-total_damage)  
+        total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
         if total_damage > 0:
@@ -182,6 +178,10 @@ class LightingBolt(Spell):
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
             print("{} missed!!".format(self.get_name()))
+            
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_health(-total_damage) 
         
 class Venom(Spell):
     def __init__(self, user):
@@ -199,11 +199,7 @@ class Venom(Spell):
             mana_cost = self.spell_cost
             
         # Determine spell damage
-        total_damage = np.random.normal(mana_cost, 0.1*mana_cost)
-        
-        # Update player stats
-        self.user.set_mana(-mana_cost)
-        target.set_health(-total_damage)  
+        total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
         if total_damage > 0:
@@ -211,6 +207,10 @@ class Venom(Spell):
             print("{} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
         else:
             print("{} missed!!".format(self.get_name()))
+            
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_health(-total_damage) 
         
 class Healing(Spell):
     def __init__(self, user):
@@ -226,10 +226,12 @@ class Healing(Spell):
             mana_cost = self.spell_cost
         
         hp = np.random.normal(mana_cost, 0.1*mana_cost)
-        self.user.set_mana(-mana_cost)
-        target.set_health(hp)
         
         print("{} was healed with {:.2f} health points!".format(target.get_name(), hp))
+        
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_health(hp)
         
 class ManaShield(Spell):
     def __init__(self, user):
@@ -244,10 +246,11 @@ class ManaShield(Spell):
         else:
             mana_cost = self.spell_cost
             
-        defense = np.random.normal(mana_cost, 0.1*mana_cost)
-        self.user.set_mana(-mana_cost)
-        target.set_defense(defense)   
+        defense = np.random.normal(mana_cost, 0.1*mana_cost)  
         
         print("{} has raised {:.2f} mana shield!".format(target.get_name(), defense))
         
+        # Update player stats
+        self.user.set_mana(-mana_cost)
+        target.set_defense(defense) 
         
