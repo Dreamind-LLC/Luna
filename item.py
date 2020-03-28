@@ -53,7 +53,6 @@ class Item(object):
             # Select skill
             target = target_list[choice-1]
         
-        
             # Display skill selected
             print("{} was selected!".format(target.get_name()))
         
