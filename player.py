@@ -146,8 +146,6 @@ class Player(object):
        
         if action and target:
             action.execute(target)
-            print(action, action.get_name())
-            print(target, target.get_name())
             input("Press the Enter Key to continue.")
 
     """
