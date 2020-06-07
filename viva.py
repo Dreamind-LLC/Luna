@@ -35,6 +35,7 @@ def valid_input():
             print("Invalid Response")
             continue
         else:
+            # Valid response
             if (option == 1) or (option == 2):
                 valid_input = True
             else:
