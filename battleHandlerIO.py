@@ -2,15 +2,29 @@ class BattleHanderIO(object):
     
     def welcome_message(self):
         # Begin Game Message
-        print("\n===================================================")
-        print("||                    Begin Game                 ||")
-        print("===================================================\n")
+        #print("\n===================================================")
+        #print("||                    Begin Game                 ||")
+        #print("===================================================\n")
+        print("\n")
+        padding_num = 60
+        print(padding_num*" ")
+        string = "Begin Game "
+        string = string.center((padding_num-len(string)-2*" "))
+        string = "|" + string + "|"
+        print(padding_num*" ")
         
     def game_over_message(self):
         # Display "Game Over" Sign
-        print("\n===================================================")
-        print("||                    Game Over                  ||")
-        print("===================================================\n")
+        #print("\n===================================================")
+        #print("||                    Game Over                  ||")
+        #print("===================================================\n")
+        print("\n")
+        padding_num = 60
+        print(padding_num*" ")
+        string = "Game Over "
+        string = string.center((padding_num-len(string)-2*" "))
+        string = "|" + string + "|"
+        print(padding_num*" ")
             
     # Prompt user to exit (y/n)
     def ask_yes_no(self, question):
