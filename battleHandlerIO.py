@@ -23,34 +23,6 @@ class BattleHanderIO(object):
     # Display game status to user
     def battle_stats(self, active_player, heroes, enemies):
         
-        # Display which player is taking a turn
-        print(self.window_length*"=")
-        print("| {}'s turn:".format(active_player.get_name()))
-        
-        # Print hero stats
-        self.title_menu("Hero Stats")
-        hero_name = "|\tName\t|\t"
-        hero_health = "|\tHealth\t|\t"
-        hero_health_list = []
-        hero_mana = "|\tMana\t|\t"
-        hero_mana_list = []
-        
-        # For each hero get the name, health, and mana
-        for player in heroes.get_teammembers():
-                hero = heroes.get_teammember(player)
-                hero_name += hero.get_name() + "\t|\t"
-                hero_health += "{:.2f}" + "\t|\t"
-                hero_health_list.append(hero.get_health())
-                hero_mana += "{:.2f}" + "\t|\t"
-                hero_mana_list.append(hero.get_mana())
-                
-        # Display stats
-        print(hero_name)
-        print(self.window_length*"=")
-        print(hero_health.format(*hero_health_list))
-        print(self.window_length*"=")
-        print(hero_mana.format(*hero_mana_list))
-        
         # Print enemy stats
         self.title_menu("Enemy Stats")
         enemy_name = "|\tName\t|\t"
@@ -75,3 +47,33 @@ class BattleHanderIO(object):
         print(self.window_length*"=")
         print(enemy_mana.format(*enemy_mana_list))
         print(self.window_length*"=")
+
+        
+        # Print hero stats
+        self.title_menu("Hero Stats")
+        hero_name = "|\tName\t|\t"
+        hero_health = "|\tHealth\t|\t"
+        hero_health_list = []
+        hero_mana = "|\tMana\t|\t"
+        hero_mana_list = []
+        
+        # For each hero get the name, health, and mana
+        for player in heroes.get_teammembers():
+                hero = heroes.get_teammember(player)
+                hero_name += hero.get_name() + "\t|\t"
+                hero_health += "{:.2f}" + "\t|\t"
+                hero_health_list.append(hero.get_health())
+                hero_mana += "{:.2f}" + "\t|\t"
+                hero_mana_list.append(hero.get_mana())
+                
+        # Display stats
+        print(hero_name)
+        print(self.window_length*"=")
+        print(hero_health.format(*hero_health_list))
+        print(self.window_length*"=")
+        print(hero_mana.format(*hero_mana_list))
+
+
+        # Display which player is taking a turn
+        active_player_string = "{}'s turn".format(active_player.get_name())
+        self.title_menu(active_player_string)
