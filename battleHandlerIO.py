@@ -28,9 +28,7 @@ class BattleHanderIO(object):
         print("| {}'s turn:".format(active_player.get_name()))
         
         # Print hero stats
-        print(self.window_length*"=")
-        print("|\t\tHero Stats\t|")
-        print(self.window_length*"=")
+        self.title_menu("Hero Stats")
         hero_name = "|\tName\t|\t"
         hero_health = "|\tHealth\t|\t"
         hero_health_list = []
@@ -54,9 +52,7 @@ class BattleHanderIO(object):
         print(hero_mana.format(*hero_mana_list))
         
         # Print enemy stats
-        print(self.window_length*"=")
-        print("|\t\tEnemy Stats\t|")
-        print(self.window_length*"=")
+        self.title_menu("Enemy Stats")
         enemy_name = "|\tName\t|\t"
         enemy_health = "|\tHealth\t|\t"
         enemy_health_list = []
