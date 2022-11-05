@@ -3,26 +3,14 @@ class BattleHanderIO(object):
     def __init__(self):
         self.window_length = 90
     
-    def welcome_message(self):
+    def title_menu(self, string):
         # Begin Game Message
         print("\n")
         print(self.window_length*"=")
-        welcome_string = "Begin Game"
         padding_diff = self.window_length-2
-        welcome_string = welcome_string.center(padding_diff, " ")
-        welcome_string = "|" + welcome_string + "|"
-        print(welcome_string)
-        print(self.window_length*"=")
-        
-    def game_over_message(self):
-        # Display "Game Over" Sign
-        print("\n")
-        print(self.window_length*"=")
-        game_over_string = "Game Over"
-        padding_diff = self.window_length-2
-        game_over_string = game_over_string.center(padding_diff, " ")
-        game_over_string = "|" + game_over_string + "|"
-        print(game_over_string)
+        string = string.center(padding_diff, " ")
+        string = "|" + string + "|"
+        print(string)
         print(self.window_length*"=")
             
     # Prompt user to exit (y/n)
@@ -36,13 +24,13 @@ class BattleHanderIO(object):
     def battle_stats(self, active_player, heroes, enemies):
         
         # Display which player is taking a turn
-        print("===================================================")
+        print(self.window_length*"=")
         print("| {}'s turn:".format(active_player.get_name()))
         
         # Print hero stats
-        print("===================================================")
+        print(self.window_length*"=")
         print("|\t\tHero Stats\t|")
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         hero_name = "|\tName\t|\t"
         hero_health = "|\tHealth\t|\t"
         hero_health_list = []
@@ -60,15 +48,15 @@ class BattleHanderIO(object):
                 
         # Display stats
         print(hero_name)
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         print(hero_health.format(*hero_health_list))
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         print(hero_mana.format(*hero_mana_list))
         
         # Print enemy stats
-        print("===================================================")
+        print(self.window_length*"=")
         print("|\t\tEnemy Stats\t|")
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         enemy_name = "|\tName\t|\t"
         enemy_health = "|\tHealth\t|\t"
         enemy_health_list = []
@@ -86,8 +74,8 @@ class BattleHanderIO(object):
                 
         # Display stats
         print(enemy_name)
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         print(enemy_health.format(*enemy_health_list))
-        print("---------------------------------------------------")
+        print(self.window_length*"=")
         print(enemy_mana.format(*enemy_mana_list))
-        print("===================================================")
+        print(self.window_length*"=")
