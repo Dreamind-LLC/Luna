@@ -1,30 +1,29 @@
 class BattleHanderIO(object):
+
+    def __init__(self):
+        self.window_length = 90
     
     def welcome_message(self):
         # Begin Game Message
-        #print("\n===================================================")
-        #print("||                    Begin Game                 ||")
-        #print("===================================================\n")
         print("\n")
-        padding_num = 60
-        print(padding_num*" ")
-        string = "Begin Game "
-        string = string.center((padding_num-len(string)-2*" "))
-        string = "|" + string + "|"
-        print(padding_num*" ")
+        print(self.window_length*"=")
+        welcome_string = "Begin Game"
+        padding_diff = self.window_length-2
+        welcome_string = welcome_string.center(padding_diff, " ")
+        welcome_string = "|" + welcome_string + "|"
+        print(welcome_string)
+        print(self.window_length*"=")
         
     def game_over_message(self):
         # Display "Game Over" Sign
-        #print("\n===================================================")
-        #print("||                    Game Over                  ||")
-        #print("===================================================\n")
         print("\n")
-        padding_num = 60
-        print(padding_num*" ")
-        string = "Game Over "
-        string = string.center((padding_num-len(string)-2*" "))
-        string = "|" + string + "|"
-        print(padding_num*" ")
+        print(self.window_length*"=")
+        game_over_string = "Game Over"
+        padding_diff = self.window_length-2
+        game_over_string = game_over_string.center(padding_diff, " ")
+        game_over_string = "|" + game_over_string + "|"
+        print(game_over_string)
+        print(self.window_length*"=")
             
     # Prompt user to exit (y/n)
     def ask_yes_no(self, question):
