@@ -87,6 +87,16 @@ class Player(object):
     # Set player's accuracy
     def set_accuracy(self, accuracy):
         self.accuracy += accuracy
+
+    # Get all player attributes
+    def get_all_attr(self):
+        attr_list = []
+        attr_list.append(self.get_name())
+        attr_list.append(self.get_health())
+        attr_list.append(self.get_mana())
+        attr_list.append(self.get_speed())
+        attr_list.append(self.get_accuracy())
+        return attr_list
     
     # Get player's roll number
     def get_roll_number(self):
