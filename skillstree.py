@@ -36,15 +36,15 @@ class skillstree(object):
             print('Skill does not exist!')
             
     def display(self):
-        print("---------------------------------------------------")
+        print(96*"-")
         print("{}'s Skills:".format(self.user.get_name()))
         skills_list = list(self.skills.keys())
         menu_index = 1
         for skill in skills_list:
-            print("[{}] ".format(menu_index) + skill + " ")
+            print("[{}]: ".format(menu_index) + skill + " ")
             menu_index += 1
-        print("[{}] ".format(menu_index) + "Return to main player menu")
-        print("---------------------------------------------------")
+        print("[{}]: ".format(menu_index) + "Return to main player menu")
+        print(96*"-")
         
     def interface(self):
         

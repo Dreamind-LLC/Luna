@@ -1,7 +1,17 @@
 import battleHandler # Import Game Library
 
+def title_menu(string):
+        print(96*"=")
+        padding_diff = 96-2
+        string = string.center(padding_diff, " ")
+        string = "|" + string + "|"
+        print(string)
+        print(96*"=")
+
 def main():
-    print("\n\t\tWelcome!")
+
+    title_menu("Welcome!")
+    #print("\n\t\tWelcome!")
 
     start_game = valid_input()
     
