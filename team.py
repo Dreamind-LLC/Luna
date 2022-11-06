@@ -31,9 +31,9 @@ class team(object):
         # While the input is not a valid input repeat the prompt
         while (valid_input==False):
             try:
-                num_players = int(input("Enter Number of {} between 1-6: ".format(self.get_team_name())))
+                num_players = int(input(" Enter Number of {} between 1-6: ".format(self.get_team_name())))
             except:
-                print("Invalid Response")
+                print(" Invalid Response")
                 continue
             else:
                 if (num_players > 0 and num_players <= 6):
@@ -52,7 +52,7 @@ class team(object):
             player_name = ""
             
             while player_name not in self.get_teammembers() and ((len(player_name) < 2) or (len(player_name) > 8)):
-                player_name = input("Enter a Valid Name for Player {}: ".format(i+1))
+                player_name = input(" Enter a Valid Name for Player {}: ".format(i+1))
        
             self.create_player(player_name)
                 
@@ -105,7 +105,7 @@ class team(object):
             self.set_total_health(player.health)
             self.set_total_speed(player.speed)
         else:
-            print("Player already exists!")
+            print(" Player already exists!")
 
     def remove_teammember(self, player):
         player_name = player.get_name()
@@ -115,7 +115,7 @@ class team(object):
             self.set_total_speed(-player.get_speed())
             del self.teammembers[player_name]
         else:
-            print("Player does not exists!")
+            print(" Player does not exists!")
             
     def get_teammember(self, player_name):
         return self.teammembers[player_name]

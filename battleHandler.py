@@ -2,7 +2,7 @@ import numpy as np # Import Numpy to perform statistics and numerical calculatio
 import player as p # Import Player library to load all the ai and players
 import team as t
 from itertools import chain
-import battleHandlerIO as IO
+import IO_Console as IO
 
 class battleHandler(object):
     
@@ -14,7 +14,7 @@ class battleHandler(object):
         self.total_player_speeds = 0
         self.action = None
         self.targets = None
-        self.IO = IO.BattleHanderIO()
+        self.IO = IO.IO_Console()
         
     def get_continue_game_state(self):
         return self.continue_game_state

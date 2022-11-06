@@ -1,17 +1,10 @@
 import battleHandler # Import Game Library
-
-def title_menu(string):
-        print(96*"=")
-        padding_diff = 96-2
-        string = string.center(padding_diff, " ")
-        string = "|" + string + "|"
-        print(string)
-        print(96*"=")
+import IO_Console as IO # Library Model for IO Menu
 
 def main():
 
-    title_menu("Welcome!")
-    #print("\n\t\tWelcome!")
+    IO_console = IO.IO_Console()
+    IO_console.title_menu("Welcome!")
 
     start_game = valid_input()
     
@@ -29,6 +22,7 @@ def main():
     
     # Prompt user to exit game
     input("Press the Enter Key to Exit.")
+    IO_console.title_menu("Goodbye!")
     
 def valid_input():
     
@@ -39,7 +33,7 @@ def valid_input():
     # Keep prompting user for a valid option 
     while (valid_input==False):
         try:
-            print("[1]: New Game\n[2]: Exit Game")
+            print(" [1]: New Game\n [2]: Exit Game")
             option = int(input("Input: "))
         except:
             print("Invalid Response")

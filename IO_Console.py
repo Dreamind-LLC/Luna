@@ -1,11 +1,11 @@
-class BattleHanderIO(object):
+class IO_Console(object):
 
-    def __init__(self):
-        self.window_length = 96
+    def __init__(self, window_length=96):
+        self.window_length = window_length
     
-    def title_menu(self, string):
+    def title_menu(self, string, padding=2):
         print(self.window_length*"=")
-        padding_diff = self.window_length-2
+        padding_diff = self.window_length - padding
         string = string.center(padding_diff, " ")
         string = "|" + string + "|"
         print(string)
@@ -64,5 +64,5 @@ class BattleHanderIO(object):
         self.team_stats(heroes)
 
         # Display who is current active player
-        active_player_string = "{}'s turn".format(active_player.get_name())
+        active_player_string = " {}'s turn".format(active_player.get_name())
         self.title_menu(active_player_string)

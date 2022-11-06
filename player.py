@@ -35,7 +35,7 @@ class Player(object):
         if self.get_health() <= 0:
             
             # Display player that was killed
-            print("{} was eliminated!!".format(self.get_name()))
+            print(" {} was eliminated!!".format(self.get_name()))
             
             # Delete player from player list
             self.team.remove_teammember(self)
@@ -156,7 +156,7 @@ class Player(object):
        
         if action and target:
             action.execute(target)
-            input("Press the Enter Key to continue.")
+            input(" Press the Enter Key to continue.")
 
     """
     def ai_options(self):
@@ -188,12 +188,12 @@ class Hero(Player):
         # Keep prompting user for a valid option 
         while (valid_input==False):
             try:
-                print("[1]: Action")
-                print("[2]: Inventory")
-                print("[3]: Exit")
-                option = int(input("Input: "))
+                print(" [1]: Action")
+                print(" [2]: Inventory")
+                print(" [3]: Exit")
+                option = int(input(" Input: "))
             except:
-                print("Invalid Response")
+                print(" Invalid Response")
                 continue
             
             # User chooses an action
@@ -217,7 +217,7 @@ class Hero(Player):
             
         # Need to select target option
         action.execute(target)
-        input("Press the Enter Key to continue.")
+        input(" Press the Enter Key to continue.")
     
     def display_menu(self):
         pass

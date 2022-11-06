@@ -1,5 +1,6 @@
 import numpy as np
 import skills as sk
+import IO_Console as IO
 
 class skillstree(object):
     def __init__(self, user):
@@ -33,17 +34,18 @@ class skillstree(object):
         if skill in self.skills:
             return self.skills[skill]
         else:
-            print('Skill does not exist!')
-            
+            print(' Skill does not exist!')
+    
+
     def display(self):
         print(96*"-")
-        print("{}'s Skills:".format(self.user.get_name()))
+        print(" {}'s Skills:".format(self.user.get_name()))
         skills_list = list(self.skills.keys())
         menu_index = 1
         for skill in skills_list:
-            print("[{}]: ".format(menu_index) + skill + " ")
+            print(" [{}]: ".format(menu_index) + skill + " ")
             menu_index += 1
-        print("[{}]: ".format(menu_index) + "Return to main player menu")
+        print(" [{}]: ".format(menu_index) + "Return to main player menu")
         print(96*"-")
         
     def interface(self):
@@ -57,9 +59,9 @@ class skillstree(object):
         # Let user select an item or exit menu
         while (choice < 1 or choice > (len(self.skills)+1)):
             try:
-                choice = int(input("Select a skill or return back to main player option menu: "))
+                choice = int(input(" Select a skill or return back to main player option menu: "))
             except:
-                print("Invalid Response")
+                print(" Invalid Response")
                 continue
         
         # Quit skills menu
@@ -72,7 +74,7 @@ class skillstree(object):
             skill_name = skill_list[choice-1]
         
             # Display skill selected
-            print("{} was selected!".format(skill_name))
+            print("| {} was selected!".format(skill_name))
         
             return self.skills[skill_name]
 
