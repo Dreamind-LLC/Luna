@@ -18,15 +18,15 @@ class Action(object):
         pass
     
     def display(self):
-        print("---------------------------------------------------")
+        print(96*"-")
         print("Target Options:")
         target_list = list(self.get_target_options())
         menu_index = 1
         for target in target_list:
-            print("[{}] ".format(menu_index) + target + " ")
+            print("[{}]: ".format(menu_index) + target + " ")
             menu_index += 1
-        print("[{}] ".format(menu_index) + "Return to main player menu")
-        print("---------------------------------------------------")
+        print("[{}]: ".format(menu_index) + "Return to main player menu")
+        print(96*"-")
     
     def interface(self):
         

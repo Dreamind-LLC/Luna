@@ -190,6 +190,7 @@ class Hero(Player):
             try:
                 print("[1]: Action")
                 print("[2]: Inventory")
+                print("[3]: Exit")
                 option = int(input("Input: "))
             except:
                 print("Invalid Response")
@@ -202,6 +203,9 @@ class Hero(Player):
             # User chooses to look up inventory
             elif option == 2:
                 action = self.inventory.interface()
+
+            elif option == 3:
+                exit()
                 
             if action:
                 
