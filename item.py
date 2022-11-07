@@ -16,13 +16,13 @@ class Item(object):
 
     def display(self):
         print("---------------------------------------------------")
-        print("Target Options:")
+        print(" Target Options:")
         target_list = list(self.get_target_options())
         menu_index = 1
         for target in target_list:
-            print("[{}] ".format(menu_index) + target + " ")
+            print(" [{}] ".format(menu_index) + target + " ")
             menu_index += 1
-        print("[{}] ".format(menu_index) + "Return to main player menu")
+        print(" [{}] ".format(menu_index) + "Return to main player menu")
         print("---------------------------------------------------")
 
 
@@ -97,7 +97,7 @@ class Health_Potion(Potion):
     def execute(self, target):
         if self.quantity > 0:
             target.set_health(self.healing_cost)
-            print("{} was healed with {:.2f} health points using a {}!".format(target.get_name(), self.healing_cost, self.get_name()))
+            print(" {} was healed with {:.2f} health points using a {}!".format(target.get_name(), self.healing_cost, self.get_name()))
             self.set_quantity(-1)
             
 
@@ -114,7 +114,7 @@ class Mana_Potion(Potion):
     def execute(self, target):
         if self.quantity > 0:
             target.set_mana(self.mana_cost)
-            print("{} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name()))
+            print(" {} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name()))
             self.set_quantity(-1)
 
 

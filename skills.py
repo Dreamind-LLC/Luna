@@ -61,6 +61,12 @@ class Attack(Action):
     def __init__(self, user, action_name, damage):
         Action.__init__(self, user, action_name)
         self.attack_damage = damage
+
+    def display_damage(self, user, target, damage):
+        if damage > 0:
+            print(" {}'s {} dealt {} {:.2f} of damage!".format(user.get_name(), self.get_name(), target.get_name(), damage))
+        else:
+            print(" {}'s {} missed {}!!".format(user.get_name(), self.get_name(), target.get_name()))
     
 class Bash(Attack):
     def __init__(self, user):
@@ -75,12 +81,8 @@ class Bash(Attack):
         total_damage = np.round_(self.attack_damage * self.user.attack_rating(), decimals=2)
         
         # Display damage to console
-        if total_damage > 0:
-            #print(" {} dealt {} {:.2f} of damage!".format())
-            print(" {} was dealt {:.2f} of damage!".format(target.get_name(), total_damage, self.get_name()))
-        else:
-            print(" {} missed {}!!".format(self.get_name(), target.get_name()))
-            
+        self.display_damage(self.user, target, total_damage)
+
         # Assign damage to opposing player
         target.set_health(-total_damage)
     
@@ -90,8 +92,14 @@ class Spell(Action):
         self.magic_type = magic_type
         self.spell_cost = mana_cost   
 
+class Attack_Spell(Spell):
+    def display_damage(self, user, target, damage):
+        if damage > 0:
+            print(" {}'s {} dealt {} {:.2f} of damage!".format(user.get_name(), self.get_name(), target.get_name(), damage))
+        else:
+            print(" {}'s {} missed {}!!".format(user.get_name(), self.get_name(), target.get_name()))
         
-class FireBlast(Spell):
+class FireBlast(Attack_Spell):
     def __init__(self, user):
         Spell.__init__(self, user, action_name='Fire Blast', magic_type='Fire', mana_cost=20)
         
@@ -107,21 +115,16 @@ class FireBlast(Spell):
             mana_cost = self.spell_cost
             
         # Determine spell damage
-        # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
         total_damage = np.random.normal(mana_cost, 0.1*mana_cost)  
         
         # Display damage results to console
-        if total_damage > 0:
-            # Update to print multiple targets
-            print(" {} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
-        else:
-            print(" {} missed {}!!".format(self.get_name(), target.get_name()))
+        self.display_damage(self.user, target, total_damage)
             
         # Update player stats
         self.user.set_mana(-mana_cost)
         target.set_health(-total_damage)
 
-class IceBlast(Spell):
+class IceBlast(Attack_Spell):
     def __init__(self, user):
         Spell.__init__(self, user, action_name='Ice Blast', magic_type='Ice', mana_cost=5)
         
@@ -137,21 +140,16 @@ class IceBlast(Spell):
             mana_cost = self.spell_cost
             
         # Determine spell damage
-        # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
         total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
-        if total_damage > 0:
-            # Update to print multiple targets
-            print(" {} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
-        else:
-            print(" {} missed {}!!".format(self.get_name(), target.get_name()))
+        self.display_damage(self.user, target, total_damage)
             
         # Update player stats
         self.user.set_mana(-mana_cost)
         target.set_health(-total_damage)
         
-class LightingBolt(Spell):
+class LightingBolt(Attack_Spell):
     def __init__(self, user):
         Spell.__init__(self, user, action_name='Lighting Bolt', magic_type='Lighting', mana_cost=10)
         
@@ -171,17 +169,13 @@ class LightingBolt(Spell):
         total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
-        if total_damage > 0:
-            # Update to print multiple targets
-            print(" {} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
-        else:
-            print(" {} missed {}!!".format(self.get_name(), target.get_name()))
+        self.display_damage(self.user, target, total_damage)
             
         # Update player stats
         self.user.set_mana(-mana_cost)
         target.set_health(-total_damage) 
         
-class Venom(Spell):
+class Venom(Attack_Spell):
     def __init__(self, user):
         Spell.__init__(self, user, action_name='Venom', magic_type='Poison', mana_cost=10)
         
@@ -200,11 +194,7 @@ class Venom(Spell):
         total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console
-        if total_damage > 0:
-            # Update to print multiple targets
-            print(" {} was dealt {:.2f} of {} damage!".format(target.get_name(), total_damage, self.get_name()))
-        else:
-            print(" {} missed {}!!".format(self.get_name(), target.get_name()))
+        self.display_damage(self.user, target, total_damage)
             
         # Update player stats
         self.user.set_mana(-mana_cost)

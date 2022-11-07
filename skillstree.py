@@ -74,7 +74,7 @@ class skillstree(object):
             skill_name = skill_list[choice-1]
         
             # Display skill selected
-            print("| {} was selected!".format(skill_name))
+            print(" {} was selected!".format(skill_name))
         
             return self.skills[skill_name]
 

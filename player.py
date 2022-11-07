@@ -158,18 +158,6 @@ class Player(object):
             action.execute(target)
             input(" Press the Enter Key to continue.")
 
-    """
-    def ai_options(self):
-        # E - number of enemies
-        # M - mana
-        # D - defense rating
-        # A - accuracy/attack rating?
-        # S - speed
-        # H - health
-        # P - attack power
-        u = (E*E*M*(E*D*E*A*E*S+E*H*P))/(H*H*M*(H*D*E*A*H*S+H*H*P))
-    """
-
 # Create a hero object
 class Hero(Player):
     
