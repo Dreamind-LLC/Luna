@@ -2,6 +2,9 @@ class Console(object):
 
     def __init__(self, window_length=96):
         self.window_length = window_length
+
+    def input(self, message):
+        input(" Press the Enter Key to Exit. ")
     
     def title_menu(self, string, padding=2):
         print(self.window_length*"=")
