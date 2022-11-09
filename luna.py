@@ -7,10 +7,10 @@ def main():
     IOconsole.title_menu("Welcome!")
 
     game_options = ['New Game', 'Exit Game']
-    start_game = IOconsole.menu_options(game_options)
+    response = IOconsole.menu_options(game_options)
     
     # Keep playing game until user decided to exit the program
-    while start_game == 1:
+    while response == 1:
         
         # Initalize the batlle object
         battle = battleHandler.battleHandler(IOconsole)
@@ -19,7 +19,7 @@ def main():
         battle.fight()
         
         # Once game ends ask if user would like to play again
-        start_game = IOconsole.menu_options(game_options)
+        response = IOconsole.menu_options(game_options)
     
     # Prompt user to exit game
     input(" Press the Enter Key to Exit.")
