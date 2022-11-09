@@ -1,4 +1,4 @@
-class IO_Console(object):
+class Console(object):
 
     def __init__(self, window_length=96):
         self.window_length = window_length
@@ -28,6 +28,34 @@ class IO_Console(object):
         while response not in ("y", "n"):
             response = input(question).lower()
         return response
+
+    def display_options(self, options_list):
+        for num in range(len(options_list)):
+            print(" [{}]: {}".format(num+1, options_list[num]))
+
+    # Menu options
+    def menu_options(self, options_list):
+        
+        # set default variables
+        option = None
+        valid_input = False
+            
+        # Keep prompting user for a valid option 
+        while (valid_input==False):
+            self.display_options(options_list)
+            try:
+                option = int(input(" Input: "))
+            except:
+                print(" Invalid Response")
+                continue
+            else:
+                # Valid response
+                if (option == 1) or (option == 2):
+                    valid_input = True
+                else:
+                    print(" Invalid Response")
+                    continue
+        return option
 
     # Display team stats
     def team_stats(self, team):

@@ -6,13 +6,14 @@ import player as p
 # Create basic player object
 class team(object):
     
-    def __init__(self, team_name, enemy=None):
+    def __init__(self, console, team_name, enemy=None):
+        self.IOconsole = console
         self.team_name = team_name
         self.total_health = 0
         self.total_speed = 0
         self.teammembers = {}
-        self.init_players()
         self.enemy = None
+        self.init_players()
 
     def init_players(self):
 
@@ -60,9 +61,9 @@ class team(object):
     def create_player(self, player_name):
         
         if self.get_team_name() == 'Heroes':
-            player = p.Hero(player_name, self)
+            player = p.Hero(console=self.IOconsole, name=player_name, team=self)
         else:
-            player = p.Player(player_name, self)
+            player = p.Player(console=self.IOconsole, name=player_name, team=self)
         
         self.add_teammember(player)
 

@@ -3,8 +3,9 @@ import numpy as np
 
 class user_inventory(object):
     
-    def __init__(self, user):
+    def __init__(self, console, user):
         self.user = user
+        self.IOconsole = console
         self.min_size = 0
         self.current_size = 0
         self.max_size = 6
@@ -18,8 +19,8 @@ class user_inventory(object):
         self.default_inventory_items()
         
     def default_inventory_items(self):
-        self.item_inventory_insert(item.Health_Potion(self.user))
-        self.item_inventory_insert(item.Mana_Potion(self.user))
+        self.item_inventory_insert(item.Health_Potion(console=self.IOconsole, user=self.user))
+        self.item_inventory_insert(item.Mana_Potion(console=self.IOconsole, user=self.user))
         
     def get_min_size(self):
         return self.min_size

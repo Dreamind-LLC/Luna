@@ -1,7 +1,8 @@
 import numpy as np
 
 class Item(object):
-    def __init__(self, user, name):
+    def __init__(self, console, user, name):
+        self.IOconsole = console
         self.user = user
         self.name = name
 
@@ -61,8 +62,9 @@ class Item(object):
 
 
 class Potion(Item):
-    def __init__(self, user, name, quantity):
-        Item.__init__(self, user, name)
+    def __init__(self, console, user, name, quantity):
+        Item.__init__(self, console, user, name)
+        self.IOconsole = console
         self.quantity = quantity
 
 
@@ -85,8 +87,8 @@ class Potion(Item):
 
 
 class Health_Potion(Potion):
-    def __init__(self, user, name="Health Potion", health_cost=20, quantity=1):
-        Potion.__init__(self, user, name, quantity)
+    def __init__(self, console, user, name="Health Potion", health_cost=20, quantity=1):
+        Potion.__init__(self, console, user, name, quantity)
         self.healing_cost = health_cost
 
 
@@ -102,8 +104,8 @@ class Health_Potion(Potion):
             
 
 class Mana_Potion(Potion):
-    def __init__(self, user, name="Mana Potion", mana_cost=20, quantity=1):
-        Potion.__init__(self, user, name, quantity)
+    def __init__(self, console, user, name="Mana Potion", mana_cost=20, quantity=1):
+        Potion.__init__(self, console, user, name, quantity)
         self.mana_cost = mana_cost
 
 

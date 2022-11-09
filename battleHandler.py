@@ -2,19 +2,19 @@ import numpy as np # Import Numpy to perform statistics and numerical calculatio
 import player as p # Import Player library to load all the ai and players
 import team as t
 from itertools import chain
-import IO_Console as IO
+import IO
 
 class battleHandler(object):
     
     # Initialize the number of heros and enemies to create
-    def __init__(self):
+    def __init__(self, console):
+        self.IOconsole = console
         self.continue_game_state = True
         self.random_number = None
         self.active_player = None
         self.total_player_speeds = 0
         self.action = None
         self.targets = None
-        self.IO = IO.IO_Console()
         
     def get_continue_game_state(self):
         return self.continue_game_state
@@ -74,10 +74,10 @@ class battleHandler(object):
     def init_teams(self):        
         
         # Initialize hero team objects
-        self.heroes = t.team('Heroes')
+        self.heroes = t.team(console=self.IOconsole, team_name='Heroes')
         
         # Initialize enemy team objects
-        self.enemies = t.team('Enemies') 
+        self.enemies = t.team(console=self.IOconsole, team_name='Enemies') 
         
         # Set teams againts each other
         self.heroes.set_enemy(self.enemies)
@@ -105,7 +105,7 @@ class battleHandler(object):
     def fight(self):
         
         # Begin Game Message
-        self.IO.title_menu("Begin Game")
+        self.IOconsole.title_menu("Begin Game")
         
         # Initialize both teams
         self.init_teams()
@@ -120,7 +120,7 @@ class battleHandler(object):
             self.determine_active_player()
             
             # Display game stats
-            self.IO.battle_stats(self.active_player, self.heroes, self.enemies)
+            self.IOconsole.battle_stats(self.active_player, self.heroes, self.enemies)
             
             # Let player determine set of actions
             self.active_player.action()
@@ -138,7 +138,7 @@ class battleHandler(object):
             self.set_roll_numbers()
         
         # Display "Game Over" Sign
-        self.IO.title_menu("Game Over")
+        self.IOconsole.title_menu("Game Over")
 
 
     

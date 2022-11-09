@@ -1,7 +1,8 @@
 import numpy as np
 
 class Action(object):
-    def __init__(self, user, action_name):
+    def __init__(self, console, user, action_name):
+        self.IOconsole = console
         self.action_name = action_name
         self.user = user
         
@@ -58,8 +59,8 @@ class Action(object):
             return target
 
 class Attack(Action):
-    def __init__(self, user, action_name, damage):
-        Action.__init__(self, user, action_name)
+    def __init__(self, console, user, action_name, damage):
+        Action.__init__(self, console, user, action_name)
         self.attack_damage = damage
 
     def display_damage(self, user, target, damage):
@@ -69,8 +70,8 @@ class Attack(Action):
             print(" {}'s {} missed {}!!".format(user.get_name(), self.get_name(), target.get_name()))
     
 class Bash(Attack):
-    def __init__(self, user):
-        Attack.__init__(self, user, action_name='Bash', damage=10.0)
+    def __init__(self, console, user):
+        Attack.__init__(self, console, user, action_name='Bash', damage=10.0)
         
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
@@ -87,8 +88,8 @@ class Bash(Attack):
         target.set_health(-total_damage)
     
 class Spell(Action):
-    def __init__(self, user, action_name, magic_type, mana_cost):
-        Action.__init__(self, user, action_name)
+    def __init__(self, console, user, action_name, magic_type, mana_cost):
+        Action.__init__(self, console, user, action_name)
         self.magic_type = magic_type
         self.spell_cost = mana_cost   
 
@@ -100,8 +101,8 @@ class Attack_Spell(Spell):
             print(" {}'s {} missed {}!!".format(user.get_name(), self.get_name(), target.get_name()))
         
 class FireBlast(Attack_Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Fire Blast', magic_type='Fire', mana_cost=20)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Fire Blast', magic_type='Fire', mana_cost=20)
         
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
@@ -125,8 +126,8 @@ class FireBlast(Attack_Spell):
         target.set_health(-total_damage)
 
 class IceBlast(Attack_Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Ice Blast', magic_type='Ice', mana_cost=5)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Ice Blast', magic_type='Ice', mana_cost=5)
         
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
@@ -150,8 +151,8 @@ class IceBlast(Attack_Spell):
         target.set_health(-total_damage)
         
 class LightingBolt(Attack_Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Lighting Bolt', magic_type='Lighting', mana_cost=10)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Lighting Bolt', magic_type='Lighting', mana_cost=10)
         
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
@@ -176,8 +177,8 @@ class LightingBolt(Attack_Spell):
         target.set_health(-total_damage) 
         
 class Venom(Attack_Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Venom', magic_type='Poison', mana_cost=10)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Venom', magic_type='Poison', mana_cost=10)
         
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
@@ -201,8 +202,8 @@ class Venom(Attack_Spell):
         target.set_health(-total_damage) 
         
 class Healing(Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Healing', magic_type='Basic', mana_cost=20)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Healing', magic_type='Basic', mana_cost=20)
         
     def get_target_options(self):
         return self.user.team.get_teammembers()
@@ -222,8 +223,8 @@ class Healing(Spell):
         target.set_health(hp)
         
 class ManaShield(Spell):
-    def __init__(self, user):
-        Spell.__init__(self, user, action_name='Mana Shield', magic_type='Basic', mana_cost=20)
+    def __init__(self, console, user):
+        Spell.__init__(self, console, user, action_name='Mana Shield', magic_type='Basic', mana_cost=20)
         
     def get_target_options(self):
         return self.user.team.get_teammembers()

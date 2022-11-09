@@ -6,7 +6,8 @@ import numpy as np
 class Player(object):
     
     # Initialize player object
-    def __init__(self, name, team, health=100.0, mana=100.0, speed=100.0, accuracy=15.0):
+    def __init__(self, console, name, team, health=100.0, mana=100.0, speed=100.0, accuracy=15.0):
+        self.IOconsole = console
         self.name = name
         self.health = health
         self.max_health = health
@@ -16,8 +17,8 @@ class Player(object):
         self.accuracy = np.random.normal(accuracy, 0.03*accuracy)
         self.roll_number = 0
         self.team = team
-        self.inventory = inv.user_inventory(self)
-        self.skillstree = sktr.skillstree(self)
+        self.inventory = inv.user_inventory(user=self, console=self.IOconsole)
+        self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
     
     # Get player's name
     def get_name(self):
@@ -162,8 +163,8 @@ class Player(object):
 class Hero(Player):
     
     # Initialize hero object
-    def __init__(self, name, team):
-        Player.__init__(self, name, team)
+    def __init__(self, console, name, team):
+        Player.__init__(self, console, name, team)
 
     # List options human player can make
     def action(self):

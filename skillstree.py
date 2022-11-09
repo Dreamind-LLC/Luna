@@ -1,20 +1,21 @@
 import numpy as np
 import skills as sk
-import IO_Console as IO
+import IO
 
 class skillstree(object):
-    def __init__(self, user):
+    def __init__(self, console, user):
+        self.IOconsole = console
         self.user = user
         self.skills = {}
         self.default_skills()
         
     def default_skills(self):
-        self.learn(sk.Bash(self.user))
-        self.learn(sk.FireBlast(self.user))
-        self.learn(sk.IceBlast(self.user))
-        self.learn(sk.LightingBolt(self.user))
-        self.learn(sk.Venom(self.user))
-        self.learn(sk.Healing(self.user))
+        self.learn(sk.Bash(console=self.IOconsole, user=self.user))
+        self.learn(sk.FireBlast(console=self.IOconsole, user=self.user))
+        self.learn(sk.IceBlast(console=self.IOconsole, user=self.user))
+        self.learn(sk.LightingBolt(console=self.IOconsole, user=self.user))
+        self.learn(sk.Venom(console=self.IOconsole, user=self.user))
+        self.learn(sk.Healing(console=self.IOconsole, user=self.user))
         #self.learn(sk.ManaShield(self.user))
     
     def learn(self, skill):

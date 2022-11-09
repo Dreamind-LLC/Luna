@@ -1,53 +1,29 @@
 import battleHandler # Import Game Library
-import IO_Console as IO # Library Model for IO Menu
+import IO # Library Model for IO Menu
 
 def main():
 
-    IO_console = IO.IO_Console()
-    IO_console.title_menu("Welcome!")
+    IOconsole = IO.Console()
+    IOconsole.title_menu("Welcome!")
 
-    start_game = valid_input()
+    game_options = ['New Game', 'Exit Game']
+    start_game = IOconsole.menu_options(game_options)
     
     # Keep playing game until user decided to exit the program
     while start_game == 1:
         
         # Initalize the batlle object
-        battle = battleHandler.battleHandler()
+        battle = battleHandler.battleHandler(IOconsole)
         
         # Continu the game with a random player turn until a player wins
         battle.fight()
         
         # Once game ends ask if user would like to play again
-        start_game = valid_input()
+        start_game = IOconsole.menu_options(game_options)
     
     # Prompt user to exit game
-    input("Press the Enter Key to Exit.")
-    IO_console.title_menu("Goodbye!")
-    
-def valid_input():
-    
-    # Give player options
-    option = None
-    valid_input = False
-        
-    # Keep prompting user for a valid option 
-    while (valid_input==False):
-        try:
-            print(" [1]: New Game\n [2]: Exit Game")
-            option = int(input("Input: "))
-        except:
-            print("Invalid Response")
-            continue
-        else:
-            # Valid response
-            if (option == 1) or (option == 2):
-                valid_input = True
-            else:
-                print("Invalid Response")
-                continue
-    
-    return option
-
+    input(" Press the Enter Key to Exit.")
+    IOconsole.title_menu("Goodbye!")
 
 if __name__ == "__main__":
     main()
