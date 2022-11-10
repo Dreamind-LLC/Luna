@@ -1,20 +1,77 @@
 class Console(object):
 
-    def __init__(self, window_length=96):
+    def __init__(self, window_length=96, padding=2):
         self.window_length = window_length
+        self.padding = padding
+        self.padding_diff = window_length - padding
 
-    def input(self, message):
-        input(" Press the Enter Key to Exit. ")
-    
-    def title_menu(self, string, padding=2):
+    # String Formatting Methods
+    def string_format_center(self, string):
+        return string.center(self.padding_diff, " ")
+
+    def string_format_left(self, string):
+        return string.ljust(self.padding_diff, " ")
+
+    def string_format_right(self, string):
+        return string.rjust(self.padding_diff, " ")
+
+    def string_format_edge(self, string):
+        return "|" + string + "|"       
+
+    # Display Formatting Methods
+    def display_text(self, prompt, orientation='left'):
+        if orientation == 'left':
+            prompt = self.string_format_left(prompt)
+        elif orientation == 'center':
+            prompt = self.string_format_center(prompt)
+        elif orientation == 'right':
+            prompt = self.string_format_right(prompt)
+        return self.string_format_edge(prompt)
+
+    def display_title(self, string, padding=2):
         print(self.window_length*"=")
-        padding_diff = self.window_length - padding
-        string = string.center(padding_diff, " ")
-        string = "|" + string + "|"
+        string = self.display_text(string, orientation='center')
         print(string)
         print(self.window_length*"=")
 
-    def player_attributes_row(self, att_list):
+    def display_menu_options(self, options_list):
+        for option in range(len(options_list)):
+            option_str = " [{}]: {}".format(option+1, options_list[option])
+            option_str = self.string_format_left(option_str)
+            print(option_str)
+
+    # Valid Response
+    def display_menu(self, menu_title, menu_options=None, prompt=" Input: ", err_msg=" Invalid Response"):
+        
+        valid_input = False
+        response = None
+        
+        # While the input is not a valid input repeat the prompt
+        while (valid_input==False):
+
+            self.display_title(menu_title)
+
+            if menu_options:
+                self.display_menu_options(menu_options)
+
+            err_message = self.string_format_left(err_msg)
+
+            try:
+                response = int(input(prompt))
+            except:
+                print(self.string_format_edge(err_message))
+                continue
+            else:
+                if response >= 1 and response <= len(menu_options):
+                    valid_input = True
+                else:
+                    print(self.string_format_edge(err_message))
+                    continue
+
+        # Return response        
+        return response
+
+    def display_player_attributes(self, att_list):
         cell_size = self.window_length/len(att_list)
         row = "|"
         for att in att_list:
@@ -24,44 +81,9 @@ class Console(object):
             row += "|"
         print(row)
         print(self.window_length*"-")
-            
-    # Prompt user to exit (y/n)
-    def ask_yes_no(self, question):
-        response = None
-        while response not in ("y", "n"):
-            response = input(question).lower()
-        return response
-
-    def display_options(self, options_list):
-        for num in range(len(options_list)):
-            print(" [{}]: {}".format(num+1, options_list[num]))
-
-    # Menu options
-    def menu_options(self, options_list):
-        
-        # set default variables
-        option = None
-        valid_input = False
-            
-        # Keep prompting user for a valid option 
-        while (valid_input==False):
-            self.display_options(options_list)
-            try:
-                option = int(input(" Input: "))
-            except:
-                print(" Invalid Response")
-                continue
-            else:
-                # Valid response
-                if (option == 1) or (option == 2):
-                    valid_input = True
-                else:
-                    print(" Invalid Response")
-                    continue
-        return option
 
     # Display team stats
-    def team_stats(self, team):
+    def display_team_stats(self, team):
 
         # For each player
         for team_member in team.get_teammembers():
@@ -71,29 +93,29 @@ class Console(object):
             player_attr = player.get_all_attr()
 
             # display player's stats
-            self.player_attributes_row(player_attr)
+            self.display_player_attributes(player_attr)
 
     
     # Display game status to user
-    def battle_stats(self, active_player, heroes, enemies):
+    def display_battle_stats(self, active_player, heroes, enemies):
 
         # List of player attributes
         att_list = ['name', 'health', 'mana', 'speed', 'accuracy']
         
         # Enemy Stats 
-        self.title_menu("Enemy Stats")
-        self.player_attributes_row(att_list)
+        self.display_title("Enemy Stats")
+        self.display_player_attributes(att_list)
 
         # Display enemy stats
-        self.team_stats(enemies)
+        self.display_team_stats(enemies)
 
         # Hero stats
-        self.title_menu("Hero Stats")
-        self.player_attributes_row(att_list)
+        self.display_title("Hero Stats")
+        self.display_player_attributes(att_list)
 
         # Display hero stats
-        self.team_stats(heroes)
+        self.display_team_stats(heroes)
 
         # Display who is current active player
         active_player_string = " {}'s turn".format(active_player.get_name())
-        self.title_menu(active_player_string)
+        self.display_title(active_player_string)

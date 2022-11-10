@@ -105,7 +105,7 @@ class battleHandler(object):
     def fight(self):
         
         # Begin Game Message
-        self.IOconsole.title_menu("Begin Game")
+        self.IOconsole.display_title("Begin Battle!")
         
         # Initialize both teams
         self.init_teams()
@@ -120,7 +120,7 @@ class battleHandler(object):
             self.determine_active_player()
             
             # Display game stats
-            self.IOconsole.battle_stats(self.active_player, self.heroes, self.enemies)
+            self.IOconsole.display_battle_stats(self.active_player, self.heroes, self.enemies)
             
             # Let player determine set of actions
             self.active_player.action()
@@ -138,7 +138,7 @@ class battleHandler(object):
             self.set_roll_numbers()
         
         # Display "Game Over" Sign
-        self.IOconsole.title_menu("Game Over")
+        self.IOconsole.display_title("Game Over")
 
 
     

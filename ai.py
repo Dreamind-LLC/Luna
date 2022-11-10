@@ -9,4 +9,4 @@
 # convert raw utility values to probility distribution using softmax
 # take action
 # record immediate reward/state
-# update model
+# update model (TD Algorithm)
