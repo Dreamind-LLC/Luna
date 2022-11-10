@@ -92,18 +92,6 @@ class team(object):
         if self.get_total_speed() < 0:
             self.total_speed = 0
 
-    # Get active active 
-    '''
-    def get_active_state(self):
-        return self.active
-
-    def set_active_state(self):
-        if self.active == False:
-            self.active = True
-        else:
-            self.active = False
-    '''
-
     # Get list of all players on team
     def get_teammembers(self):
         return self.teammembers
