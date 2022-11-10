@@ -18,58 +18,76 @@ class user_inventory(object):
         self.item_inventory = {}
         self.default_inventory_items()
         
+    # Add default player inventory
     def default_inventory_items(self):
         self.item_inventory_insert(item.Health_Potion(console=self.IOconsole, user=self.user))
         self.item_inventory_insert(item.Mana_Potion(console=self.IOconsole, user=self.user))
         
+    # Get min inventory size
     def get_min_size(self):
         return self.min_size
     
+    # Get current inventory size
     def get_current_size(self):
         return self.current_size
     
+    # Get max inventory size
     def get_max_size(self):
         return self.max_size
     
+    # Get player
     def get_armour(self):
         return self.armour
     
+    # Set armour
     def set_armaour(self, armour):
         self.armour = armour
         
+    # Get helmet
     def get_helmet(self):
         return self.helmet
     
+    # Set helmet
     def set_helmet(self, helmet):
         self.helmet = helmet
         
+    # Get gloves
     def get_gloves(self):
         return self.gloves
     
+    # Set gloves
     def set_gloves(self, gloves):
         self.gloves = gloves
         
+    # Get weapon
     def get_weapon(self):
         return weapon
     
+    # Set weapon
     def set_weapon(self, weapon):
         self.weapon = weapon
         
+    # Get amulet
     def get_amulet(self):
         return self.amulet
     
+    # Set amulet
     def set_amulet(self, amulet):
         self.amulet = amulet
 
+    # Get rings
     def get_rings(self):
         return self.rings
     
+    # Set rings
     def set_rings(self, rings):
         self.rings = rings
         
+    # Get items
     def get_items(self):
         return self.item_inventory
    
+    # Get list of options
     def get_items_options(self):
         options = []
         for item in self.get_items().values():
@@ -77,6 +95,7 @@ class user_inventory(object):
                 options.append((item, target))
         return options
     
+    # Get item
     def get_item(self, item_name):
         return self.item_inventory[item_name]
         
@@ -128,10 +147,12 @@ class user_inventory(object):
         
             return item
         
+    # Use item from inventory 
     def item_inventory_select(self, item_name):
         self.item_inventory[item_name].use(self.user)
         del self.item_inventory[item_name]
         
+    # Add item to inventory
     def item_inventory_insert(self, item):
         if self.get_current_size() < self.get_max_size():
             self.item_inventory[item.get_name()] = item
@@ -141,6 +162,7 @@ class user_inventory(object):
         else:
             print("Inventory Full!")
             
+    # Git rid of inventory
     def item_inventory_drop(self, item):
         if self.item_inventory[item.get_name()]:
             del self.item_inventory[item.get_name()]

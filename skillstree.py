@@ -8,7 +8,8 @@ class skillstree(object):
         self.user = user
         self.skills = {}
         self.default_skills()
-        
+    
+    # Add list of skills to skills tree
     def default_skills(self):
         self.learn(sk.Bash(console=self.IOconsole, user=self.user))
         self.learn(sk.FireBlast(console=self.IOconsole, user=self.user))
@@ -16,14 +17,16 @@ class skillstree(object):
         self.learn(sk.LightingBolt(console=self.IOconsole, user=self.user))
         self.learn(sk.Venom(console=self.IOconsole, user=self.user))
         self.learn(sk.Healing(console=self.IOconsole, user=self.user))
-        #self.learn(sk.ManaShield(self.user))
     
+    # Add individula skill to skills tree
     def learn(self, skill):
         self.skills[skill.get_name()] = skill
         
+    # Get list of all skills
     def get_skills(self):
         return self.skills
     
+    # Get list of options for each skills
     def get_skills_options(self):
         options = []
         for skill in self.get_skills().values():
@@ -31,13 +34,13 @@ class skillstree(object):
                 options.append((skill, target))
         return options
     
+    # Get skill
     def get_skill(self, skill):
         if skill in self.skills:
             return self.skills[skill]
         else:
             print(' Skill does not exist!')
     
-
     def display(self):
         print(96*"-")
         print(" {}'s Skills:".format(self.user.get_name()))

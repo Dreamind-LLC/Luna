@@ -5,7 +5,7 @@ class Console(object):
         self.padding = padding
         self.padding_diff = window_length - padding
 
-    # String Formatting Methods
+    # String formatting methods
     def string_format_center(self, string):
         return string.center(self.padding_diff, " ")
 
@@ -18,7 +18,7 @@ class Console(object):
     def string_format_edge(self, string):
         return "|" + string + "|"       
 
-    # Display Formatting Methods
+    # Display text in game console
     def display_text(self, prompt, orientation='left'):
         if orientation == 'left':
             prompt = self.string_format_left(prompt)
@@ -28,19 +28,21 @@ class Console(object):
             prompt = self.string_format_right(prompt)
         return self.string_format_edge(prompt)
 
+    # Display title in game console
     def display_title(self, string, padding=2):
         print(self.window_length*"=")
         string = self.display_text(string, orientation='center')
         print(string)
         print(self.window_length*"=")
 
+    # Display list of menu options
     def display_menu_options(self, options_list):
         for option in range(len(options_list)):
             option_str = " [{}]: {}".format(option+1, options_list[option])
             option_str = self.string_format_left(option_str)
             print(option_str)
 
-    # Valid Response
+    # Display menu
     def display_menu(self, menu_title, menu_options=None, prompt=" Input: ", err_msg=" Invalid Response"):
         
         valid_input = False
@@ -71,6 +73,7 @@ class Console(object):
         # Return response        
         return response
 
+    # Display player and its attributes
     def display_player_attributes(self, att_list):
         cell_size = self.window_length/len(att_list)
         row = "|"

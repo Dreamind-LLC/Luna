@@ -3,8 +3,10 @@ import IO # Library Model for IO Menu
 
 def main():
 
+    # Create game interface
     IOconsole = IO.Console()
 
+    # Display main game menu
     title = "Luna and the Darkness of Magic"
     game_options = ['New Game', 'Exit Game']
     response = IOconsole.display_menu(title, game_options)
@@ -15,7 +17,6 @@ def main():
         # Initalize the batlle object
         battle = battleHandler.battleHandler(IOconsole)
         
-        print("battleHandler created")
         # Continu the game with a random player turn until a player wins
         battle.fight()
         

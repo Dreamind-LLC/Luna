@@ -16,12 +16,15 @@ class battleHandler(object):
         self.action = None
         self.targets = None
         
+    # Get current game state
     def get_continue_game_state(self):
         return self.continue_game_state
     
+    # Update the game state
     def set_continue_game_state(self, state):
         self.continue_game_state = state
         
+    # Get random number
     def get_random_number(self):
         return self.random_number
         
@@ -29,31 +32,36 @@ class battleHandler(object):
     def set_random_number(self):
         high = self.get_total_player_speeds() + 1
         self.random_number = np.random.randint(0, high)
-        
+    
+    # Get current active player
     def get_active_player(self):
         return self.active_player
     
+    # Set current player to the active player
     def set_active_player(self, active_player):
         self.active_player = active_player
         
+    # Get total player speed
     def get_total_player_speeds(self):
         return self.total_player_speeds
     
+    # Set total player speed to total_speed
     def set_total_player_speeds(self, total_speed):
         self.total_player_speeds = total_speed
-        
+    
+    # Get current action
     def get_action():
         return self.action
-    
-    def execute_action():
-        pass
         
+    # Set current action
     def set_action(action):
         self.action = action
     
+    # Get targets
     def get_targets():
         return self.targets
     
+    # Get set targets
     def set_targets(targets):
         self.targets = targets
 

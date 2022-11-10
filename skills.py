@@ -6,15 +6,19 @@ class Action(object):
         self.action_name = action_name
         self.user = user
         
+    # Get action name
     def get_name(self):
         return self.action_name
 
+    # Get user
     def get_user(self):
         return self.user
     
+    # Get target options
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
         
+    # Default execute method
     def execute(self, target):
         pass
     
@@ -58,11 +62,13 @@ class Action(object):
         
             return target
 
+
 class Attack(Action):
     def __init__(self, console, user, action_name, damage):
         Action.__init__(self, console, user, action_name)
         self.attack_damage = damage
 
+    # Display damage done to target
     def display_damage(self, user, target, damage):
         if damage > 0:
             print(" {}'s {} dealt {} {:.2f} of damage!".format(user.get_name(), self.get_name(), target.get_name(), damage))

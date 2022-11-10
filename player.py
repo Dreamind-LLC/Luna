@@ -67,9 +67,11 @@ class Player(object):
         if self.get_mana() > self.get_max_mana():
             self.mana = self.get_max_mana()
             
+    # Get player's max mana
     def get_max_mana(self):
         return self.max_mana
     
+    # Update player's max mana
     def set_max_mana(self, max_mana):
         self.max_mana = max_mana
     
@@ -140,11 +142,9 @@ class Player(object):
         action, target = options[choice[0]]
         return action, target
    
+    # List options
     def list_options(self):
         return self.skillstree.get_skills_options() + self.inventory.get_items_options()
-   
-    def rank_actions(self):
-        pass
        
     # Determine player action
     def action(self):
@@ -207,11 +207,5 @@ class Hero(Player):
         # Need to select target option
         action.execute(target)
         input(" Press the Enter Key to continue.")
-    
-    def display_menu(self):
-        pass
-    
-    def confirm_action(self):
-        pass
     
     

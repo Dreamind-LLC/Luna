@@ -15,6 +15,7 @@ class team(object):
         self.enemy = None
         self.init_players()
 
+    # Initialize n-number of players
     def init_players(self):
 
         # Ask user for number of valid (1-6) heros to create
@@ -67,25 +68,32 @@ class team(object):
         
         self.add_teammember(player)
 
+    # Get team name
     def get_team_name(self):
         return self.team_name
 
+    # Get teams total health
     def get_total_health(self):
         return self.total_health
 
+    # Update teams total health
     def set_total_health(self, health):
         self.total_health += health
         if self.get_total_health() < 0:
             self.total_health = 0
 
+    # Get teams total speed
     def get_total_speed(self):
         return self.total_speed
 
+    # Set teams total speed
     def set_total_speed(self, speed):
         self.total_speed += speed
         if self.get_total_speed() < 0:
             self.total_speed = 0
 
+    # Get active active 
+    '''
     def get_active_state(self):
         return self.active
 
@@ -94,10 +102,13 @@ class team(object):
             self.active = True
         else:
             self.active = False
+    '''
 
+    # Get list of all players on team
     def get_teammembers(self):
         return self.teammembers
 
+    # Add player to team
     def add_teammember(self, player):
         player_name = player.get_name()
         
@@ -108,6 +119,7 @@ class team(object):
         else:
             print(" Player already exists!")
 
+    # Remove player from team
     def remove_teammember(self, player):
         player_name = player.get_name()
         
@@ -117,19 +129,24 @@ class team(object):
             del self.teammembers[player_name]
         else:
             print(" Player does not exists!")
-            
+           
+    # Get player from team 
     def get_teammember(self, player_name):
         return self.teammembers[player_name]
             
+    # Set enemy
     def set_enemy(self, enemy):
         self.enemy = enemy
         
+    # Get enemy
     def get_enemy(self):
         return self.enemy
     
+    # Get list of enemy players
     def get_enemy_teammembers(self):
         return self.enemy.get_teammembers()
     
+    # Get enemy from enemy list
     def get_enemy_teammember(self, player_name):
         return self.enemy.teammembers[player_name]
     
