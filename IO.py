@@ -4,6 +4,7 @@ class Console(object):
         self.window_length = window_length
         self.padding = padding
         self.padding_diff = window_length - padding
+        self.default_prompt = " Input: "
 
     # String formatting methods
     def string_format_center(self, string):
@@ -16,17 +17,30 @@ class Console(object):
         return string.rjust(self.padding_diff, " ")
 
     def string_format_edge(self, string):
-        return "|" + string + "|"       
+        return "|" + string + "|"
+
+    # Display input prompt
+    def display_input(self, prompt=None):
+        if prompt == None:
+            prompt = self.default_prompt
+        return int(input(prompt))
 
     # Display text in game console
-    def display_text(self, prompt, orientation='left'):
+    def display_text(self, prompt, orientation='left', edge=True):
+
+        # Align string 
         if orientation == 'left':
             prompt = self.string_format_left(prompt)
         elif orientation == 'center':
             prompt = self.string_format_center(prompt)
         elif orientation == 'right':
             prompt = self.string_format_right(prompt)
-        return self.string_format_edge(prompt)
+
+        # Add edge to string
+        if edge == True:
+            prompt = self.string_format_edge(prompt)
+
+        return prompt
 
     # Display title in game console
     def display_title(self, string, padding=2):
@@ -43,7 +57,7 @@ class Console(object):
             print(option_str)
 
     # Display menu
-    def display_menu(self, menu_title, menu_options=None, prompt=" Input: ", err_msg=" Invalid Response"):
+    def display_menu(self, menu_title, menu_options=None, prompt=None, err_msg=" Invalid Response"):
         
         valid_input = False
         response = None
@@ -53,21 +67,29 @@ class Console(object):
 
             self.display_title(menu_title)
 
-            if menu_options:
+            if type(menu_options) == list:
                 self.display_menu_options(menu_options)
 
             err_message = self.string_format_left(err_msg)
 
             try:
-                response = int(input(prompt))
+                response = self.display_input(prompt)
+                #response = int(input(prompt))
             except:
                 print(self.string_format_edge(err_message))
                 continue
             else:
-                if response >= 1 and response <= len(menu_options):
+                min_response = 1
+                max_response = 1
+                if type(menu_options) == list:
+                    max_response = len(menu_options)
+                elif type(menu_options) == int:
+                    max_response = menu_options
+
+                if response >= min_response and response <= max_response:
                     valid_input = True
                 else:
-                    print(self.string_format_edge(err_message))
+                    print(err_message)
                     continue
 
         # Return response        

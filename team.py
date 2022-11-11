@@ -19,30 +19,12 @@ class team(object):
     def init_players(self):
 
         # Ask user for number of valid (1-6) heros to create
-        num_players = self.valid_num_players()
+        title = " Enter Number of {} between 1-6: ".format(self.get_team_name())
+        max_players = 6
+        num_players = self.IOconsole.display_menu(title, max_players)
 
         # Initialize hero objects
         self.create_players(num_players)
-
-    # Get number of players to create
-    def valid_num_players(self):
-        
-        num_players = 0
-        valid_input = False
-        
-        # While the input is not a valid input repeat the prompt
-        while (valid_input==False):
-            try:
-                num_players = int(input(" Enter Number of {} between 1-6: ".format(self.get_team_name())))
-            except:
-                print(" Invalid Response")
-                continue
-            else:
-                if (num_players > 0 and num_players <= 6):
-                    valid_input = True
-
-        # Return number of players to create        
-        return num_players
 
     # Initializes player objects 
     def create_players(self, num_players):
