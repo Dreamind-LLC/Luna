@@ -74,9 +74,8 @@ class Console(object):
 
             try:
                 response = self.display_input(prompt)
-                #response = int(input(prompt))
             except:
-                print(self.string_format_edge(err_message))
+                print(err_message)
                 continue
             else:
                 min_response = 1

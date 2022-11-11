@@ -13,15 +13,15 @@ class team(object):
         self.total_speed = 0
         self.teammembers = {}
         self.enemy = None
+        self.max_team_size = 5
         self.init_players()
 
     # Initialize n-number of players
     def init_players(self):
 
         # Ask user for number of valid (1-6) heros to create
-        title = " Enter Number of {} between 1-6: ".format(self.get_team_name())
-        max_players = 6
-        num_players = self.IOconsole.display_menu(title, max_players)
+        title = " Enter Number of {} between 1-5: ".format(self.get_team_name())
+        num_players = self.IOconsole.display_menu(title, self.max_team_size)
 
         # Initialize hero objects
         self.create_players(num_players)
