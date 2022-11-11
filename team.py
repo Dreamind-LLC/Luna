@@ -36,7 +36,8 @@ class team(object):
             player_name = ""
             
             while player_name not in self.get_teammembers() and ((len(player_name) < 2) or (len(player_name) > 8)):
-                player_name = input(" Enter a Valid Name for Player {}: ".format(i+1))
+                prompt = " Enter a Valid Name for Player {}: ".format(i+1)
+                player_name = self.IOconsole.display_input(prompt)
        
             self.create_player(player_name)
                 
@@ -87,7 +88,7 @@ class team(object):
             self.set_total_health(player.health)
             self.set_total_speed(player.speed)
         else:
-            print(" Player already exists!")
+            self.IOconsole.display_text(" Player already exists!", edge=False)
 
     # Remove player from team
     def remove_teammember(self, player):
@@ -98,7 +99,8 @@ class team(object):
             self.set_total_speed(-player.get_speed())
             del self.teammembers[player_name]
         else:
-            print(" Player does not exists!")
+            self.IOconsole.display_text(" Player does not exists!", edge=False)
+            #print(" Player does not exists!")
            
     # Get player from team 
     def get_teammember(self, player_name):
@@ -119,8 +121,3 @@ class team(object):
     # Get enemy from enemy list
     def get_enemy_teammember(self, player_name):
         return self.enemy.teammembers[player_name]
-    
-    
-
-
-

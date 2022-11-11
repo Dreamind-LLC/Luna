@@ -23,7 +23,7 @@ class Console(object):
     def display_input(self, prompt=None):
         if prompt == None:
             prompt = self.default_prompt
-        return int(input(prompt))
+        return input(prompt)
 
     # Display text in game console
     def display_text(self, prompt, orientation='left', edge=True):
@@ -73,19 +73,19 @@ class Console(object):
             err_message = self.string_format_left(err_msg)
 
             try:
-                response = self.display_input(prompt)
+                response = int(self.display_input(prompt))
             except:
                 print(err_message)
                 continue
             else:
-                min_response = 1
+                min_response = 0
                 max_response = 1
                 if type(menu_options) == list:
                     max_response = len(menu_options)
                 elif type(menu_options) == int:
                     max_response = menu_options
 
-                if response >= min_response and response <= max_response:
+                if response > min_response and response <= max_response:
                     valid_input = True
                 else:
                     print(err_message)
