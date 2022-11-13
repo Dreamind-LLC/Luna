@@ -112,23 +112,23 @@ class battleHandler(object):
     # Play game using randomized turn-based mechanics based on all players' speeds
     def fight(self):
         
-        # Begin Game Message
-        self.IOconsole.display_title("Begin Battle!")
-        
         # Initialize both teams
         self.init_teams()
         
         # Get a random number
         self.set_random_number()
+
+        # Begin Game Message
+        self.IOconsole.display_title("Begin Battle!")
         
         # Continue playing game until continue_game flag is set to false
         while self.get_continue_game_state():  
             
+            # Display game stats
+            self.IOconsole.display_battle_stats(self.heroes, self.enemies)
+
             # Determine which player goes next
             self.determine_active_player()
-            
-            # Display game stats
-            self.IOconsole.display_battle_stats(self.active_player, self.heroes, self.enemies)
             
             # Let player determine set of actions
             self.active_player.action()

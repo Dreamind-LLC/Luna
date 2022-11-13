@@ -121,7 +121,7 @@ class Console(object):
 
     
     # Display game status to user
-    def display_battle_stats(self, active_player, heroes, enemies):
+    def display_battle_stats(self, heroes, enemies):
 
         # List of player attributes
         att_list = ['name', 'health', 'mana', 'speed', 'accuracy']
@@ -140,6 +140,7 @@ class Console(object):
         # Display hero stats
         self.display_team_stats(heroes)
 
-        # Display who is current active player
+    # Display who is current active player
+    def display_active_player(self, active_player):
         active_player_string = " {}'s turn".format(active_player.get_name())
         self.display_title(active_player_string)

@@ -36,7 +36,8 @@ class Player(object):
         if self.get_health() <= 0:
             
             # Display player that was killed
-            print(" {} was eliminated!!".format(self.get_name()))
+            msg = " {} was eliminated!!".format(self.get_name())
+            self.IOconsole.display_text(msg)
             
             # Delete player from player list
             self.team.remove_teammember(self)
@@ -57,7 +58,9 @@ class Player(object):
     
     # Set player's mana
     def set_mana(self, mana):
+        print("Mana Before: {}".format(mana))
         self.mana += mana
+        print("Mana After: {}".format(mana))
         
         # If mana is below zero set to zero
         if self.get_mana() <= 0:
@@ -151,13 +154,15 @@ class Player(object):
        
         # Keep track of player action
         action = None
+        target = None
        
         # List player options
         action, target = self.select_actions()
        
         if action and target:
             action.execute(target)
-            input(" Press the Enter Key to continue.")
+            msg = " Press the Enter Key to continue."
+            self.IOconsole.display_input(msg)
 
 # Create a hero object
 class Hero(Player):
@@ -167,24 +172,20 @@ class Hero(Player):
         Player.__init__(self, console, name, team)
 
     # List options human player can make
-    def action(self):
-   
-        # Give player options
+    def action(self, auto=False):
+
         action = None
         option = None
-        valid_input = False
-        
-        # Keep prompting user for a valid option 
-        while (valid_input==False):
-            try:
-                print(" [1]: Action")
-                print(" [2]: Inventory")
-                print(" [3]: Exit")
-                option = int(input(" Input: "))
-            except:
-                print(" Invalid Response")
-                continue
-            
+        title = "{}'s turn".format(self.get_name())
+        options = ['Action', 'Inventory', 'Exit']
+        valid_action = False
+
+        # while valid action and target not chosen 
+        while valid_action == False:
+
+            # Ask user to select option from menu
+            option = self.IOconsole.display_menu(title, options)
+
             # User chooses an action
             if option == 1: 
                 action = self.skillstree.interface()
@@ -195,17 +196,20 @@ class Hero(Player):
 
             elif option == 3:
                 exit()
-                
+            
+            # If action chosen
             if action:
-                
+
                 # User chooses target
                 target = action.interface()
-                
+
+                # end loop
                 if target:
-                    valid_input = True
-            
-        # Need to select target option
+                    valid_action = True
+
+        # Execute action on selected target
         action.execute(target)
-        input(" Press the Enter Key to continue.")
-    
-    
+
+        # Ask user to press enter to continue
+        msg = " Press the Enter Key to continue."
+        self.IOconsole.display_input(msg)

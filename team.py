@@ -100,7 +100,6 @@ class team(object):
             del self.teammembers[player_name]
         else:
             self.IOconsole.display_text(" Player does not exists!", edge=False)
-            #print(" Player does not exists!")
            
     # Get player from team 
     def get_teammember(self, player_name):
