@@ -1,6 +1,4 @@
 # Luna
-
-## About
 This capstone project is intended for educational purposes on how to build a rogue random turn-based text game in Python.
 
 Getting Started
