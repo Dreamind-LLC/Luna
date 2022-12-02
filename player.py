@@ -17,7 +17,7 @@ class Player(object):
         self.accuracy = np.random.normal(accuracy, 0.03*accuracy)
         self.roll_number = 0
         self.team = team
-        self.inventory = inv.user_inventory(user=self, console=self.IOconsole)
+        self.inventory = inv.inventory(user=self, console=self.IOconsole)
         self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
     
     # Get player's name
@@ -46,9 +46,11 @@ class Player(object):
         if self.get_health() > self.get_max_health():
             self.health = self.get_max_health()
             
+    # Get player's max health
     def get_max_health(self):
         return self.max_health
     
+    # Update player's max health
     def set_max_health(self, max_health):
         self.max_health = max_health
             
@@ -58,9 +60,7 @@ class Player(object):
     
     # Set player's mana
     def set_mana(self, mana):
-        print("Mana Before: {}".format(mana))
         self.mana += mana
-        print("Mana After: {}".format(mana))
         
         # If mana is below zero set to zero
         if self.get_mana() <= 0:
@@ -155,10 +155,14 @@ class Player(object):
         # Keep track of player action
         action = None
         target = None
+
+        title = "{}'s turn".format(self.get_name())
+        self.IOconsole.display_title(title)
        
         # List player options
         action, target = self.select_actions()
-       
+
+        # If valid action and target - execute action
         if action and target:
             action.execute(target)
             msg = " Press the Enter Key to continue."

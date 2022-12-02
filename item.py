@@ -15,43 +15,36 @@ class Item(object):
         pass
 
 
-    def display(self):
-        print("---------------------------------------------------")
-        print(" Target Options:")
-        target_list = list(self.get_target_options())
-        menu_index = 1
-        for target in target_list:
-            print(" [{}] ".format(menu_index) + target + " ")
-            menu_index += 1
-        print(" [{}] ".format(menu_index) + "Return to main player menu")
-        print("---------------------------------------------------")
-
-
+    # Player's item interface to select from available targets
     def interface(self):
         
         # Display skills
-        self.display()
+        title = " Target Options:"
+        self.IOconsole.display_title(title)
+
+        # List all the targets
+        target_list = list(self.get_target_options().values())
+        target_str_list = list(self.get_target_options())
+        target_str_list.append("Return to main player menu")
     
         # Initialize choice variable to determine what skill to use
         choice = 0
         
-        # List all the targers
-        target_list = list(self.get_target_options().values())
-        
         # Let user select a target
         while (choice < 1 or choice > (len(target_list)+1)):
             try:
-                choice = int(input("Select a target or return back to main player option menu: "))
+                title = "Select a target or return back to main player option menu: "
+                choice = int(self.IOconsole.display_menu(title, target_str_list))
             except:
-                print("Invalid Response")
+                self.IOconsole.display_text("Invalid Response")
                 continue
         
         # Quit skill menu
         if choice == len(target_list)+1:
             return None
         
+        # Select skill
         else:
-            # Select skill
             target = target_list[choice-1]
         
             return target
@@ -97,11 +90,16 @@ class Health_Potion(Potion):
 
 
     def execute(self, target):
+
         if self.quantity > 0:
             target.set_health(self.healing_cost)
-            print(" {} was healed with {:.2f} health points using a {}!".format(target.get_name(), self.healing_cost, self.get_name()))
+            text = " {} was healed with {:.2f} health points using a {}!".format(target.get_name(), self.healing_cost, self.get_name())
+            self.IOconsole.display_text(text)
             self.set_quantity(-1)
-            
+        else:
+            text = " {} was already at full health!".format(target.get_name())
+            self.IOconsole.display_text(text)
+
 
 class Mana_Potion(Potion):
     def __init__(self, console, user, name="Mana Potion", mana_cost=20, quantity=1):
@@ -114,10 +112,15 @@ class Mana_Potion(Potion):
 
 
     def execute(self, target):
+
         if self.quantity > 0:
             target.set_mana(self.mana_cost)
-            print(" {} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name()))
+            text = " {} was restored with {:.2f} mana points using a {}!".format(target.get_name(), self.mana_cost, self.get_name())
+            self.IOconsole.display_text(text)
             self.set_quantity(-1)
+        else:
+            text = " {} was already at full mana!".format(target.get_name())
+            self.IOconsole.display_text(text)
 
 
 class crest(Item):

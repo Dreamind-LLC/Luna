@@ -35,20 +35,26 @@ class team(object):
             # Ask user for the name of a player
             player_name = ""
             
-            while player_name not in self.get_teammembers() and ((len(player_name) < 2) or (len(player_name) > 8)):
+            # While valid play name need to be enter, keep requesting name from user
+            while (player_name not in self.get_teammembers()) and ((len(player_name) < 2) or (len(player_name) > 8)):
                 prompt = " Enter a Valid Name for Player {}: ".format(i+1)
                 player_name = self.IOconsole.display_input(prompt)
        
+            # Create player
             self.create_player(player_name)
                 
     # If hero create hero object otherwise create a player object
     def create_player(self, player_name):
         
+        # If player belongs to heros, create hero object
         if self.get_team_name() == 'Heroes':
             player = p.Hero(console=self.IOconsole, name=player_name, team=self)
+        
+        # Else create regular player
         else:
             player = p.Player(console=self.IOconsole, name=player_name, team=self)
         
+        # Add player to their respective team
         self.add_teammember(player)
 
     # Get team name
@@ -83,10 +89,13 @@ class team(object):
     def add_teammember(self, player):
         player_name = player.get_name()
         
+        # If player not already in team, add to team
         if player_name not in self.teammembers:
             self.teammembers[player_name] = player
             self.set_total_health(player.health)
             self.set_total_speed(player.speed)
+
+        # Else notify user player already exist
         else:
             self.IOconsole.display_text(" Player already exists!", edge=False)
 
@@ -94,10 +103,13 @@ class team(object):
     def remove_teammember(self, player):
         player_name = player.get_name()
         
+        # Check if player in team
         if player_name in self.teammembers:
             self.set_total_health(-player.get_health())
             self.set_total_speed(-player.get_speed())
             del self.teammembers[player_name]
+
+        # Else notify user player does not exist on team
         else:
             self.IOconsole.display_text(" Player does not exists!", edge=False)
            

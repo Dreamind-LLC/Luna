@@ -108,7 +108,6 @@ class battleHandler(object):
                 self.set_active_player(player)
                 break
 
-
     # Play game using randomized turn-based mechanics based on all players' speeds
     def fight(self):
         
@@ -147,6 +146,3 @@ class battleHandler(object):
         
         # Display "Game Over" Sign
         self.IOconsole.display_title("Game Over")
-
-
-    

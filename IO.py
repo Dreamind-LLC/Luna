@@ -26,7 +26,7 @@ class Console(object):
         return input(prompt)
 
     # Display text in game console
-    def display_text(self, prompt, orientation='left', edge=True):
+    def display_text(self, prompt, orientation='left', edge=False):
 
         # Align string 
         if orientation == 'left':
@@ -40,13 +40,12 @@ class Console(object):
         if edge == True:
             prompt = self.string_format_edge(prompt)
 
-        return prompt
+        print(prompt)
 
     # Display title in game console
     def display_title(self, string, padding=2):
         print(self.window_length*"=")
-        string = self.display_text(string, orientation='center')
-        print(string)
+        self.display_text(string, orientation='center', edge=True)
         print(self.window_length*"=")
 
     # Display list of menu options
@@ -59,34 +58,45 @@ class Console(object):
     # Display menu
     def display_menu(self, menu_title, menu_options=None, prompt=None, err_msg=" Invalid Response"):
         
+        # Set variables
         valid_input = False
         response = None
+        err_message = self.string_format_left(err_msg)
+        min_response = 0
+        max_response = None
+
+        # Update max_response range based on if menu is a list 
+        if type(menu_options) == list:
+            max_response = len(menu_options)
+        elif type(menu_options) == int:
+            max_response = menu_options
         
         # While the input is not a valid input repeat the prompt
         while (valid_input==False):
 
+            # Display menu title
+
             self.display_title(menu_title)
 
+            # If menu is multiple choice
             if type(menu_options) == list:
+
+                # Display menu options
                 self.display_menu_options(menu_options)
 
-            err_message = self.string_format_left(err_msg)
-
+            # Try to get user input
             try:
                 response = int(self.display_input(prompt))
+            # Display error if unable to process input
             except:
                 print(err_message)
                 continue
+            # Determine if response is valid
             else:
-                min_response = 0
-                max_response = 1
-                if type(menu_options) == list:
-                    max_response = len(menu_options)
-                elif type(menu_options) == int:
-                    max_response = menu_options
-
+                # Determine if response is in option range
                 if response > min_response and response <= max_response:
                     valid_input = True
+                # Otherwise display error
                 else:
                     print(err_message)
                     continue
@@ -96,13 +106,23 @@ class Console(object):
 
     # Display player and its attributes
     def display_player_attributes(self, att_list):
+
+        # Determine spacing between cells
         cell_size = self.window_length/len(att_list)
         row = "|"
+
+        # For each attribute
         for att in att_list:
+
+            # If attribute is a number, round to 2 decimals
             if isinstance(att, int) or isinstance(att, float):
                 att = "{:.2f}".format(att)
+
+            # Format - center string and place border
             row += att.center(int(cell_size-1), " ")
             row += "|"
+
+        # Display entire row to console and print bottom border
         print(row)
         print(self.window_length*"-")
 

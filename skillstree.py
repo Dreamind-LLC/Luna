@@ -28,59 +28,53 @@ class skillstree(object):
     
     # Get list of options for each skills
     def get_skills_options(self):
+
+        # List of available actions
         options = []
+
+        # For each skill in skills tree
         for skill in self.get_skills().values():
+
+            # For each available target from skill
             for target in skill.get_target_options().values():
+
+                # Update list of actions
                 options.append((skill, target))
+
+        # Return available action list
         return options
     
     # Get skill
     def get_skill(self, skill):
+
+        # If skill available return it
         if skill in self.skills:
             return self.skills[skill]
+
+        # Else notify user skill does not exist
         else:
-            print(' Skill does not exist!')
-    
-    def display(self):
-        print(96*"-")
-        print(" {}'s Skills:".format(self.user.get_name()))
-        skills_list = list(self.skills.keys())
-        menu_index = 1
-        for skill in skills_list:
-            print(" [{}]: ".format(menu_index) + skill + " ")
-            menu_index += 1
-        print(" [{}]: ".format(menu_index) + "Return to main player menu")
-        print(96*"-")
+            msg = ' Skill does not exist!'
+            self.IOconsole.display_input(msg)
         
+    # Player's skills tree interface to select from available skills
     def interface(self):
         
-        # Display skills
-        self.display()
-    
-        # Initialize choice variable to determine what skill to use
-        choice = 0
-        
-        # Let user select an item or exit menu
-        while (choice < 1 or choice > (len(self.skills)+1)):
-            try:
-                choice = int(input(" Select a skill or return back to main player option menu: "))
-            except:
-                print(" Invalid Response")
-                continue
+        # Display Skills tree menu
+        title = " {}'s Skills:".format(self.user.get_name())
+        options = list(self.skills.keys())
+        options.append("Return to main player menu")
+        choice = self.IOconsole.display_menu(title, options)
         
         # Quit skills menu
         if choice == len(self.skills)+1:
             return None
         
+        # Select skill
         else:
-            # Select skill
+            # Display skill selected
             skill_list = list(self.skills.keys())
             skill_name = skill_list[choice-1]
-        
-            # Display skill selected
-            print(" {} was selected!".format(skill_name))
+            text = " {} was selected!".format(skill_name)
+            self.IOconsole.display_text(text)
         
             return self.skills[skill_name]
-
-    
-    

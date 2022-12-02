@@ -1,7 +1,7 @@
 import item
 import numpy as np
 
-class user_inventory(object):
+class inventory(object):
     
     def __init__(self, console, user):
         self.user = user
@@ -89,86 +89,84 @@ class user_inventory(object):
    
     # Get list of options
     def get_items_options(self):
+
+        # Keep track of available actions of items and players
         options = []
+
+        # For each item in inventory
         for item in self.get_items().values():
+
+            # For player in available targets
             for target in item.get_target_options().values():
+
+                # Update availabl actions list
                 options.append((item, target))
+
         return options
     
     # Get item
     def get_item(self, item_name):
         return self.item_inventory[item_name]
         
+    # Player's inventory interface to select from available items
     def interface(self):
-        self.display()
-        return self.select_item_options()
-        
-    def display(self):
-        print("---------------------------------------------------")
-        print("{}'s Inventory:".format(self.user.get_name()))
+
+        # Display menu
+        title = "{}'s Inventory:".format(self.user.get_name())
         inventory_list = list(self.item_inventory.keys())
-        menu_index = 1
+        inventory_list.append("Return to main player menu")
+        choice = self.IOconsole.display_menu(title, inventory_list)
         if len(inventory_list) == 0:
-            print("Inventory is empty!")
-            print("[1] Return to main player menu")
-        else:
-            for item in inventory_list:
-                print("[{}] ".format(menu_index) + item + " ")
-                menu_index += 1
-            print("[{}] ".format(menu_index) + "Return to main player menu")
-        print("---------------------------------------------------")
-        
-    def select_item_options(self):
-        
-        # Initialize choice variable to determine opposing player to target
-        choice = 0
-        item_list = list(self.get_items())
-            
-        # Let user select an item or exit menu
-        while (choice < 1 or choice > len(item_list)+1):
-            try:
-                choice = int(input("Select an item or return back to main player option menu: "))
-            except:
-                print("Invalid Response")
-                continue
-            
+            self.IOconsole.display_text("Inventory is empty!")
+
         # Quit skills menu
-        if choice == len(item_list)+1:
+        if choice == len(inventory_list):
             return None
         
+        # Select item
         else:
-            item_name = item_list[choice-1]
-        
-            # Select item
+            item_name = inventory_list[choice-1]
             item = self.get_item(item_name)
         
             # Display item selected
-            print("{} was selected!".format(item_name))
+            text = " {} was selected!".format(item_name)
+            self.IOconsole.display_text(text)
         
-            return item
+            return item  
         
     # Use item from inventory 
     def item_inventory_select(self, item_name):
         self.item_inventory[item_name].use(self.user)
         del self.item_inventory[item_name]
-        
+    
+
     # Add item to inventory
     def item_inventory_insert(self, item):
+
+        # Determine if inventory is full
         if self.get_current_size() < self.get_max_size():
             self.item_inventory[item.get_name()] = item
             self.current_size += 1
             if self.get_current_size() == self.get_max_size():
-                print("Inventory has reach max limit!")
+                self.IOconsole.display_text(" Inventory has reach max limit!")
+        # Else
         else:
-            print("Inventory Full!")
-            
+            self.IOconsole.display_text(" Inventory Full!")
+    
     # Git rid of inventory
     def item_inventory_drop(self, item):
+
+        # If item exist in inventory
         if self.item_inventory[item.get_name()]:
             del self.item_inventory[item.get_name()]
             self.current_size -= 1
+
+        # Else item does not exist
         else:
-            print("{} does not exist in {}'s inventory!".format(item.get_name(), self.user.get_name()))
-            print("Current Inventory List:")
-            print(list(self.item_inventory.keys()))
+            text1 = " {} does not exist in {}'s inventory!".format(item.get_name(), self.user.get_name())
+            text2 = " Current Inventory List:"
+            text3 = list(self.item_inventory.keys())
+            self.IOconsole.display_text(text1)
+            self.IOconsole.display_text(text2)
+            self.IOconsole.display_text(text3)
             

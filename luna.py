@@ -25,7 +25,7 @@ def main():
         response = IOconsole.display_menu(title, game_options)
     
     # Prompt user to exit game
-    IOconsole.display_text("Press the Enter Key to Exit.")
+    IOconsole.display_text(" Press the Enter Key to Exit.")
     IOconsole.display_title("Goodbye!")
 
 if __name__ == "__main__":
