@@ -97,6 +97,7 @@ class Console(object):
                 # Determine if response is in option range
                 if response > min_response and response <= max_response:
                     valid_input = True
+                    
                 # Otherwise display error
                 else:
                     print(err_message)

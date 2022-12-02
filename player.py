@@ -20,7 +20,7 @@ class Player(object):
         self.inventory = inv.inventory(user=self, console=self.IOconsole)
         self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
 
-        # resistance
+        # resistance attributes (To Do)
         #self.fire_resistance = None
         #self.ice_resistance = None
         #self.lighting_resistance = None

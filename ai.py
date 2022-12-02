@@ -1,4 +1,4 @@
-# AI algorithm
+# AI algorithm - Work in progress
 
 # Assess utility of current state
 # For each available action
