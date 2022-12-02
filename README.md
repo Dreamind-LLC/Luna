@@ -13,9 +13,7 @@ Before cloning the repository first, download [anaconda](https://www.anaconda.co
 ## License
 © 2022 Dreamind LLC
 
-All Rights Reserved. 
-
-No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise except for personal non-commercial use without the written permission of the publisher.
+All Rights Reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise without the written permission of the publisher except for personal non-commercial use.
 
 Python is a registered trademark of the Python Software Foundation.
 All other trademarks are the property of their respective owners.
