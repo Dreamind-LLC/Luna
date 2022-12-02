@@ -97,6 +97,7 @@ class Bash(Attack):
         target.set_health(-total_damage)
     
 
+# TO DO - Update spells based on player resistance attributes and spell effects
 class Spell(Action):
     def __init__(self, console, user, action_name, magic_type, mana_cost):
         Action.__init__(self, console, user, action_name)
@@ -184,7 +185,6 @@ class LightingBolt(Attack_Spell):
             mana_cost = self.spell_cost
             
         # Determine spell damage
-        # spell_damage = np.round_(mana_cost * self.user.attack_rating(), decimals=2)
         total_damage = np.random.normal(mana_cost, 0.1*mana_cost) 
         
         # Display damage results to console

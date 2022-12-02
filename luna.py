@@ -19,7 +19,7 @@ def main():
     # Keep playing game until user decided to exit the program
     while response == 1:
         
-        # Initalize the batlle object
+        # Initalize the battle handler object
         battle = battleHandler.battleHandler(IOconsole)
         
         # Continu the game with a random player turn until a player wins

@@ -151,6 +151,8 @@ class inventory(object):
         if self.get_current_size() < self.get_max_size():
             self.item_inventory[item.get_name()] = item
             self.current_size += 1
+
+            # If current size reaches max size
             if self.get_current_size() == self.get_max_size():
                 self.IOconsole.display_text(" Inventory has reach max limit!")
         # Else

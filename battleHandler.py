@@ -72,7 +72,7 @@ class battleHandler(object):
     def set_targets(targets):
         self.targets = targets
 
-    # Determine who goes first based on where random number falls in range of roll numbers calculated
+    # Determine who goes first based on where the random number falls in range of roll numbers calculated
     def set_roll_numbers(self):
         
         # Keep track of the current total speed of characters to determine roll numbers (reset after every round)
@@ -81,11 +81,11 @@ class battleHandler(object):
         # Loop through players
         for player_name, player in chain(self.heroes.teammembers.items(), self.enemies.teammembers.items()):
             
-            # Assign roll number based on the accumulated speeds calculates so far (heros and enemies)
+            # Assign roll number based on the accumulated speed calculated so far (heros and enemies)
             self.set_total_player_speeds(self.get_total_player_speeds() + player.get_speed())
             player.set_roll_number(self.get_total_player_speeds())
         
-    # Creates all the hero and enemy players to being the game
+    # Creates all the hero and enemy players to begin the game
     def init_teams(self):        
         
         # Initialize hero team objects
@@ -115,7 +115,7 @@ class battleHandler(object):
                 self.set_active_player(player)
                 break
 
-    # Play game using randomized turn-based mechanics based on all players' speeds
+    # Play game using randomized turn-based mechanics based on total speed of all players
     def fight(self):
         
         # Initialize both teams
@@ -124,7 +124,7 @@ class battleHandler(object):
         # Get a random number
         self.set_random_number()
 
-        # Begin Game Message
+        # Begin game message
         self.IOconsole.display_title("Begin Battle!")
         
         # Continue playing game until continue_game flag is set to false
@@ -145,11 +145,11 @@ class battleHandler(object):
                 # Set continue_game flag to false
                 self.set_continue_game_state(False)
         
-            # Game Continues with new random number
+            # Game continues with new random number
             self.set_random_number()
             
             # Reset all players roll numbers
             self.set_roll_numbers()
         
-        # Display "Game Over" Sign
+        # Display "Game Over" sign
         self.IOconsole.display_title("Game Over")

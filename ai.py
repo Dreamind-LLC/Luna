@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 # AI algorithm (Future work)
+||||||| merged common ancestors
+# AI algorithm
+=======
+# AI algorithm - Work in progress
+>>>>>>> 4c5f648cc845fd51ddb001131b7cedbef4449ffd
 
 # Assess utility of current state
 # For each available action
