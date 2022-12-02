@@ -1,19 +1,19 @@
 # Luna
 
-### About
+## About
 This capstone project is intended for educational purposes on how to build a rogue random turn-based text game in Python.
 
 Getting Started
 
-#####Stack
+###Stack
 This project used Python and NumPy a numerical math library for Python
 
-#####Installation
+###Installation
 Before cloning the repository first, download anaconda:
 https://www.anaconda.com/products/distribution/start-coding-immediately
 
 
-###License
+##License
 © 2022 Dreamind LLC
 
 All Rights Reserved. 
@@ -23,5 +23,5 @@ No part of this publication may be reproduced, stored in a retrieval system, or 
 Python is a registered trademark of the Python Software Foundation.
 All other trademarks are the property of their respective owners.
 
-###Contact:
+##Contact:
 For permission to use material from this product, submit all requests online at contact@dreamind.net
