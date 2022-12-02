@@ -19,4 +19,4 @@ Python is a registered trademark of the Python Software Foundation.
 All other trademarks are the property of their respective owners.
 
 ## Contact:
-For permission to use material from this product, submit all requests online at contact@dreamind.net.
+For permission to use material from this product, submit all requests to contact@dreamind.net.
