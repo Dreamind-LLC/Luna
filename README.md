@@ -4,7 +4,7 @@ This capstone project is intended for educational purposes on how to build a rog
 ## Getting Started
 
 ### Stack
-This project used Python and NumPy - a numerical math library for Python.
+This project used Python 3.0 and NumPy (a numerical math library for Python).
 
 ### Installation
 Before cloning the repository, first download [anaconda](https://www.anaconda.com/products/distribution/start-coding-immediately).
