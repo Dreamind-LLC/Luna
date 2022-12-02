@@ -1,6 +1,13 @@
 import numpy as np
 
 class Item(object):
+    """
+    The Item class creates objects that players can interact with
+    to increase their stats or use to affect game play. Each
+    item has an interface to select among several possible 
+    target players and an execution method to implement action.
+    """
+
     def __init__(self, console, user, name):
         self.IOconsole = console
         self.user = user

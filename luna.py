@@ -2,6 +2,11 @@ import battleHandler # Import Game Library
 import IO # Library Model for IO Menu
 
 def main():
+    """
+    Main game menu. Will great user and ask if they woul like to 
+    play a game or quit. If user selects to play, the game engine
+    battlehander will be initated, otherwise the program will exit.
+    """
 
     # Create game interface
     IOconsole = IO.Console()

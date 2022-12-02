@@ -5,6 +5,13 @@ from itertools import chain
 import IO
 
 class battleHandler(object):
+    """
+    The battleHandler class is a simple game engine that contains
+    the state of the game and the state of all players.
+
+    Once created, game loop will continue until one of the teams
+    is eliminated or the player quites the game. 
+    """
     
     # Initialize the number of heros and enemies to create
     def __init__(self, console):

@@ -1,4 +1,4 @@
-# AI algorithm
+# AI algorithm (Future work)
 
 # Assess utility of current state
 # For each available action

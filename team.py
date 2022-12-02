@@ -5,6 +5,10 @@ import player as p
 
 # Create basic player object
 class team(object):
+    """
+    The team class creates a data structure to keep track of
+    each team and their total player stats.
+    """
     
     def __init__(self, console, team_name, enemy=None):
         self.IOconsole = console

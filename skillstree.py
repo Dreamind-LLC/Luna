@@ -3,6 +3,11 @@ import skills as sk
 import IO
 
 class skillstree(object):
+    """
+    The skillstree class is a data structure that keeps track of all
+    the skills that an individual player currently has.
+    """
+
     def __init__(self, console, user):
         self.IOconsole = console
         self.user = user

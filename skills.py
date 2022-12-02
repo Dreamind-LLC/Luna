@@ -1,6 +1,13 @@
 import numpy as np
 
 class Action(object):
+    """
+    The Action class is used to perform individual player actions
+    and spells. Each action has an interface to select among
+    several possible target players and an execution method
+    to implement action.
+    """
+
     def __init__(self, console, user, action_name):
         self.IOconsole = console
         self.action_name = action_name

@@ -4,6 +4,10 @@ import numpy as np
 
 # Create basic player object
 class Player(object):
+    """
+    The Player class creates player objects with player
+    attributes and skills.
+    """
     
     # Initialize player object
     def __init__(self, console, name, team, health=100.0, mana=100.0, speed=100.0, accuracy=15.0):
@@ -20,11 +24,11 @@ class Player(object):
         self.inventory = inv.inventory(user=self, console=self.IOconsole)
         self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
 
-        # resistance
-        #self.fire_resistance = None
-        #self.ice_resistance = None
-        #self.lighting_resistance = None
-        #self.venom_resistance = None
+        # Future work - add resistance
+        # self.fire_resistance = None
+        # self.ice_resistance = None
+        # self.lighting_resistance = None
+        # self.venom_resistance = None
     
 
     # Get player's name
@@ -146,7 +150,7 @@ class Player(object):
     # Determine actions player should use
     def select_actions(self):
        
-        # If basic enemy - perform basic attack
+        # If basic enemy - perform random attack (eventually replace with AI)
         options = self.list_options()
         choice = np.random.choice(len(options),1)
         action, target = options[choice[0]]
