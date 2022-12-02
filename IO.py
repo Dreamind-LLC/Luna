@@ -75,7 +75,6 @@ class Console(object):
         while (valid_input==False):
 
             # Display menu title
-
             self.display_title(menu_title)
 
             # If menu is multiple choice
@@ -87,10 +86,12 @@ class Console(object):
             # Try to get user input
             try:
                 response = int(self.display_input(prompt))
+                
             # Display error if unable to process input
             except:
                 print(err_message)
                 continue
+
             # Determine if response is valid
             else:
                 # Determine if response is in option range

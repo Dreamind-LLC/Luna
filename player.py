@@ -19,7 +19,14 @@ class Player(object):
         self.team = team
         self.inventory = inv.inventory(user=self, console=self.IOconsole)
         self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
+
+        # resistance
+        #self.fire_resistance = None
+        #self.ice_resistance = None
+        #self.lighting_resistance = None
+        #self.venom_resistance = None
     
+
     # Get player's name
     def get_name(self):
         return self.name
