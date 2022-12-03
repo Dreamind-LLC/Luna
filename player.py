@@ -24,26 +24,11 @@ class Player(object):
         self.inventory = inv.inventory(user=self, console=self.IOconsole)
         self.skillstree = sktr.skillstree(user=self, console=self.IOconsole)
 
-<<<<<<< HEAD
         # Future work - add resistance
         # self.fire_resistance = None
         # self.ice_resistance = None
         # self.lighting_resistance = None
-        # self.venom_resistance = None
-||||||| merged common ancestors
-        # resistance
-        #self.fire_resistance = None
-        #self.ice_resistance = None
-        #self.lighting_resistance = None
-        #self.venom_resistance = None
-=======
-        # resistance attributes (To Do)
-        #self.fire_resistance = None
-        #self.ice_resistance = None
-        #self.lighting_resistance = None
-        #self.venom_resistance = None
->>>>>>> 4c5f648cc845fd51ddb001131b7cedbef4449ffd
-    
+        # self.venom_resistance = None 
 
     # Get player's name
     def get_name(self):
