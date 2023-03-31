@@ -3,7 +3,7 @@ import IO # Library Model for IO Menu
 
 def main():
     """
-    Main game menu. Will great user and ask if they woul like to 
+    Main game menu. Will create user and ask if they would like to 
     play a game or quit. If user selects to play, the game engine
     battlehander will be initated, otherwise the program will exit.
     """
