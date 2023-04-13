@@ -3,7 +3,7 @@ import numpy as np
 class Item(object):
     """
     The Item class creates objects that players can interact with
-    to increase their stats or use to affect game play. Each
+    to increase their stats or use to affect gameplay. Each
     item has an interface to select among several possible 
     target players and an execution method to implement action.
     """

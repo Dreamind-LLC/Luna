@@ -23,7 +23,7 @@ class skillstree(object):
         self.learn(sk.Venom(console=self.IOconsole, user=self.user))
         self.learn(sk.Healing(console=self.IOconsole, user=self.user))
     
-    # Add individula skill to skills tree
+    # Add individual skill to skills tree
     def learn(self, skill):
         self.skills[skill.get_name()] = skill
         
@@ -56,7 +56,7 @@ class skillstree(object):
         if skill in self.skills:
             return self.skills[skill]
 
-        # Else notify user skill does not exist
+        # Else notify user that skill does not exist
         else:
             msg = ' Skill does not exist!'
             self.IOconsole.display_input(msg)

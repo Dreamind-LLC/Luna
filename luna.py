@@ -5,7 +5,7 @@ def main():
     """
     Main game menu. Will ask a user if they would like to 
     play a game or quit. If user selects to play, the game engine
-    battlehander will be initated, otherwise the program will exit.
+    battlehander will be initiated, otherwise, the program will exit.
     """
 
     # Create game interface
@@ -16,13 +16,13 @@ def main():
     game_options = ['New Game', 'Exit Game']
     response = IOconsole.display_menu(title, game_options)
     
-    # Keep playing game until user decided to exit the program
+    # Keep playing game until user decides to exit the program
     while response == 1:
         
         # Initalize the battle handler object
         battle = battleHandler.battleHandler(IOconsole)
         
-        # Continu the game with a random player turn until a player wins
+        # Continue the game with a random player turn until a player wins
         battle.fight()
         
         # Once game ends ask if user would like to play again

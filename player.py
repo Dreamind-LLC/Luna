@@ -208,6 +208,7 @@ class Hero(Player):
             elif option == 2:
                 action = self.inventory.interface()
 
+            # User chooses to exit game
             elif option == 3:
                 exit()
             

@@ -10,10 +10,10 @@ class battleHandler(object):
     the state of the game and the state of all players.
 
     Once created, game loop will continue until one of the teams
-    is eliminated or the player quites the game. 
+    is eliminated or the player quits the game. 
     """
     
-    # Initialize the number of heros and enemies to create
+    # Initialize the number of heroes and enemies to create
     def __init__(self, console):
         self.IOconsole = console
         self.continue_game_state = True

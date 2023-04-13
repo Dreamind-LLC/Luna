@@ -6,7 +6,7 @@
 		# estimate future state from action
 		# assess utility based on predicted state
 		# store utility value for action
-# convert raw utility values to probility distribution using softmax
+# convert raw utility values to probability distribution using softmax
 # take action
 # record immediate reward/state
 # update model (TD Algorithm)

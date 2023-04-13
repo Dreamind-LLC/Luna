@@ -1,7 +1,7 @@
 class Console(object):
     """
-    The Console class is a simple input output helper to help
-    faciliate a simple consistent interface for the player.
+    The Console class is a simple input-output helper to help
+    facilitate a simple consistent interface for the player.
     """
 
     def __init__(self, window_length=96, padding=2):

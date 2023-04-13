@@ -30,7 +30,7 @@ class team(object):
         # Initialize hero objects
         self.create_players(num_players)
 
-    # Initializes player objects 
+    # Initialize player objects 
     def create_players(self, num_players):
         
         # Loop through all the number of players to create
@@ -39,7 +39,7 @@ class team(object):
             # Ask user for the name of a player
             player_name = ""
             
-            # While valid play name need to be enter, keep requesting name from user
+            # While valid player name needs to be entered, keep requesting name from user
             while (player_name not in self.get_teammembers()) and ((len(player_name) < 2) or (len(player_name) > 8)):
                 prompt = " Enter a Valid Name for Player {}: ".format(i+1)
                 player_name = self.IOconsole.display_input(prompt)
@@ -47,10 +47,10 @@ class team(object):
             # Create player
             self.create_player(player_name)
                 
-    # If hero create hero object otherwise create a player object
+    # If hero, create hero object, otherwise create a player object
     def create_player(self, player_name):
         
-        # If player belongs to heros, create hero object
+        # If player belongs to heroes, create hero object
         if self.get_team_name() == 'Heroes':
             player = p.Hero(console=self.IOconsole, name=player_name, team=self)
         

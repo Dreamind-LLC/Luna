@@ -5,7 +5,7 @@ class Action(object):
     The Action class is used to perform individual player actions
     and spells. Each action has an interface to select among
     several possible target players and an execution method
-    to implement action.
+    to implement the action.
     """
 
     def __init__(self, console, user, action_name):
@@ -25,7 +25,7 @@ class Action(object):
     def get_target_options(self):
         return self.user.team.get_enemy_teammembers()
         
-    # Default execute method
+    # Default execution method
     def execute(self, target):
         print("Execution Error")
         exit()

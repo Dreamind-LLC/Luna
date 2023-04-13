@@ -3,8 +3,8 @@ import numpy as np
 
 class inventory(object):
     """
-    The inventory class is a data strucutre that keeps track of all
-    the items that an individual players currently has.
+    The inventory class is a data structure that keeps track of all
+    the items that an individual player currently has.
     """
     
     def __init__(self, console, user):
